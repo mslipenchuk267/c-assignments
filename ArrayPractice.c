@@ -143,11 +143,7 @@ int secondLargest(int A[], int length) {
    for example, if A[] is initially 10,20,30,40,50, and numPlaces=2
    after the function finishes, A[] would be 40,50,10,20,30 */
 void rotate_right(int A[], int length, int numPlaces) {
-  int i,j,temp;
-  temp = A[numValues-1-i];
-  for (i = 0; i < numPlaces; i++) {
-    A[numValues-1-i] = A[length-1-i];
-    for (j = numValues; j < length - i
+
 }
 
 /* inserts the value n in A[] at the given index and shifts
@@ -183,6 +179,17 @@ void initialize(int A[], int len, int initialValue) {
 /* shuffles the values in A so that the even values
    are all to the left of the odd values */
 void evens_on_left(int A[], int len) {
+  int i,temp, counter = 0;
+  for (i = len - 1; i > 0; i--) {
+    if (counter < i - 1) {
+      while(A[counter] % 2 == 0) { /* Skip over Even already on right*/
+        counter++;
+      }
+      temp = A[i];
+      A[i] = A[counter];
+      A[counter] = temp;
+    }
+  }
 }
 
 /* returns the index of the first occurrence of
