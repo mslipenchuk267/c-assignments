@@ -154,7 +154,6 @@ void rotate_right(int A[], int length, int numPlaces) {
       temp2 = temp;
     }
   }
-
 }
 
 /* inserts the value n in A[] at the given index and shifts
@@ -165,8 +164,7 @@ void rotate_right(int A[], int length, int numPlaces) {
 void insert(int A[], int n, int index, int length) {
   int i;
   for (i = length - 1; i > index; i--) {
-    A[i] = A[i-1];
-  }
+    A[i] = A[i-1]; }
   A[index] = n;
 }
 
@@ -177,7 +175,6 @@ void array_copy(int D[], int S[], int numItems) {
     D[i] = S[i];
   }
 }
-
 
 /* sets the first len elements of A to initialValue */
 void initialize(int A[], int len, int initialValue) {
