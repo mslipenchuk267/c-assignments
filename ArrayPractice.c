@@ -42,8 +42,10 @@ int main(int argc, char **argv)
   printf("The average of A[] is %f\n", average(A,LEN_A));
   printf("There are %d items in A[] less than this.\n", less_than_average(A,LEN_A));
 
+  /*
   reverse(A, LEN_A);
   print_array(A, LEN_A);
+  */
 
   rotate_right(A, LEN_A, 3);
   print_array(A, LEN_A);
@@ -145,8 +147,8 @@ int secondLargest(int A[], int length) {
    after the function finishes, A[] would be 40,50,10,20,30 */
 void rotate_right(int A[], int length, int numPlaces) {
   int i,j,temp,temp2;
+  temp = A[numPlaces-1];
   for (i=0;i<numPlaces;i++){
-    temp = A[numPlaces-1-i];
     A[numPlaces-1-i] = A[length-1-i];
     for (j = numPlaces;j <= length-1-i;j+=numPlaces) {
       temp2 = A[numPlaces-1-i+j];
