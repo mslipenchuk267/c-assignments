@@ -227,7 +227,7 @@ int find_last(int A[], int len, int x) {
 int contains_dup(int A[], int len) {
   int i,j;
   for (i = 0; i < len; i++) {
-    for (j = 1; i < len; j++) {
+    for (j = 1; j < len; j++) {
       if (A[i] == A[j]) // Check if values are duplicates
         return 1; // exit function as soon as duplicate is found
     }
