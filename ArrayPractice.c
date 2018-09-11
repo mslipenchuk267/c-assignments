@@ -149,8 +149,8 @@ void rotate_right(int A[], int length, int numPlaces) {
   int i,j,last;
   for (i = 0; i < numPlaces; i++) {
     last = A[length - 1 - i];
-    for (j = length - 1; j > i; j -= numValues) {
-      A[j] = A[j - numValues];
+    for (j = length - 1; j > i + numPlaces; j -= numPlaces) {
+      A[j] = A[j - numPlaces];
     }
     A[i] = last;
   }
