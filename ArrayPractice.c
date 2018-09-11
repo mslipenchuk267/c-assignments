@@ -148,7 +148,7 @@ int secondLargest(int A[], int length) {
 void rotate_right(int A[], int length, int numPlaces) {
   int i,j,temp,temp2;
   for (i=0;i<numPlaces;i++){
-    temp = A[numPlaces-1];
+    temp = A[numPlaces-1-i];
     A[numPlaces-1-i] = A[length-1-i];
     for (j = numPlaces;j <= length-1-i;j+=numPlaces) {
       temp2 = A[numPlaces-1-i+j];
@@ -160,7 +160,6 @@ void rotate_right(int A[], int length, int numPlaces) {
 
 /* inserts the value n in A[] at the given index and shifts
    all other values up one position.  A[] contains length items.
-
    It is up to the caller to make sure that there is enough space
    in A[] to accomodate the new item, and that the index is valid. */
 void insert(int A[], int n, int index, int length) {
