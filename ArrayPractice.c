@@ -164,7 +164,8 @@ void rotate_right(int A[], int length, int numPlaces) {
 void insert(int A[], int n, int index, int length) {
   int i;
   for (i = length - 1; i > index; i--) {
-    A[i] = A[i-1]; }
+    A[i] = A[i-1];
+  }
   A[index] = n;
 }
 
