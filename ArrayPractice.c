@@ -145,11 +145,11 @@ int secondLargest(int A[], int length) {
 void rotate_right(int A[], int length, int numPlaces) {
   int i,j,temp,temp2;
   for (i=0;i<numPlaces;i++){
-    temp = A[numValues-1-i];
-    A[numValues-1-i] = A[length-1-i];
-    for (j = numValues;j <= length-1-i;j+=numValues) {
-      temp2 = A[numValues-1-i+j];
-      A[numValues-1-i+j] = temp;
+    temp = A[numPlaces-1-i];
+    A[numPlaces-1-i] = A[length-1-i];
+    for (j = numPlaces;j <= length-1-i;j+=numPlaces) {
+      temp2 = A[numPlaces-1-i+j];
+      A[numPlaces-1-i+j] = temp;
       temp2 = temp;
     }
   }
