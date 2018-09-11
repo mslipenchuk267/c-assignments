@@ -185,7 +185,7 @@ void evens_on_left(int A[], int len) {
       while(A[counter] % 2 == 0) { /* Skip over Even already on right*/
         counter++;
       }
-      temp = A[i];
+      temp = A[i]; /* Swap Values */
       A[i] = A[counter];
       A[counter] = temp;
     }
