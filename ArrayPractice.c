@@ -146,15 +146,13 @@ int secondLargest(int A[], int length) {
    for example, if A[] is initially 10,20,30,40,50, and numPlaces=2
    after the function finishes, A[] would be 40,50,10,20,30 */
 void rotate_right(int A[], int length, int numPlaces) {
-  int i,j,temp,temp2;
-  for (i=0;i<numPlaces;i++){
-    temp = A[numPlaces-1-i];
-    A[numPlaces-1-i] = A[length-1-i];
-    for (j = numPlaces;j <= length-1-i;j+=numPlaces) {
-      temp2 = A[numPlaces-1-i+j];
-      A[numPlaces-1-i+j] = temp;
-      temp2 = temp;
+  int i,j,last;
+  for (i = 0; i < numPlaces; i++) {
+    last = A[length - 1 - i];
+    for (j = length - 1; j > i; j -= numValues) {
+      A[j] = A[j - numValues];
     }
+    A[i] = last;
   }
 }
 
