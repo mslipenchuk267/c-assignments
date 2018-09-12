@@ -1,0 +1,69 @@
+1.
+(a)  What happens during the preprocessor stage?  What is input?  What is output?
+ Input: source_code.c Output: 
+
+(b)  What happens during the compilation stage?  What is input?  What is output?
+
+(c)  What happens during the assembly stage?  What is input?  What is output?
+
+(d)  What happens during the linking stage?  What is input?  What is output?
+
+2.  What’s the command to ”go up” a level in the directory tree?
+
+cd ..
+
+3.  What’s the command to ”go to” your home directory?
+
+cd ~
+
+4.  What’s the command to ”go to” the root of the directory tree?
+
+cd /
+
+5.  What’s the command to delete a file?
+
+rm file.ext
+
+6.  What’s the command to delete a directory?
+// Included -r if there are subfolders
+rm -r dir
+
+7.  What’s the command to create a directory?
+
+mkdir dir
+
+8.  What’s the command to make a copy of a file?
+
+cp file1.ext file2.ext
+
+9.  What’s the command to rename a file?
+
+mv oldfile.ext	newfile.ext
+
+10.  Suppose that there’s a unix shell command called petronam. What’s the command that I’d type in the shell in order to see the help page for the proper usage of petronam?
+
+man petronam
+
+11.  What’s the unix shell command to view the contents of a file in hexadecimal?
+
+hexdump file.ext
+
+12.  What’s the unix shell command to display a file one screen at a time?
+
+
+
+13.  How would I run the commandkeurigtaking its input from a file calledbeans?
+
+commandkeurigtaking < calledbeans
+
+14.  How can I take the output of abakecommand and use it as input for aslicecommand?
+
+aslicecommand < abakecommand
+
+15.  What’s the command to print a long directory listing (names, permissions, owner, length,etc)?
+
+ls -l
+
+16.  What’s the command to alter the permissions of a file to allow the owner to read, write,or execute the file?
+
+
