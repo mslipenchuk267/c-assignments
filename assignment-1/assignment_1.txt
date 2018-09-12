@@ -1,12 +1,19 @@
 1.
 (a)  What happens during the preprocessor stage?  What is input?  What is output?
- Input: source_code.c Output: 
+ Input: source_code.c Output: source_code.i
+ The preprocessor replaces macro defintions (anything with #) with more c code and passes this to the actual compiler. The ouput is just c code, so if there were no proproccesor directives in my file, then cpp would not to be run. 
 
 (b)  What happens during the compilation stage?  What is input?  What is output?
+ Input: source_code.i Output: source_code.s
+ The compiler translaces C cod to assembly code. The resulting assembly code is made with respect to the computer's architecture so optimizations and register allocations vary by machine. 
 
 (c)  What happens during the assembly stage?  What is input?  What is output?
+ Input: source_code.s Output: source_code.o
+ The assembler translates the assembly code to machine code/binary. The resulting file is referred to as an object file which is just a binary representation of the program. The assembler gives memory locations to variables and instructions.
 
 (d)  What happens during the linking stage?  What is input?  What is output?
+ Input: source_code.o Output: source_code
+ The linker links our program's object file to other object files and libraries. Since the assembler can't assign the actual memory locations, the linker does this and resolves unresolved references. Unresolved refernces are variables, functions, etc that were declared but not defined. The result is a runnable binary executable file.
 
 2.  What’s the command to ”go up” a level in the directory tree?
 
@@ -50,7 +57,7 @@ hexdump file.ext
 
 12.  What’s the unix shell command to display a file one screen at a time?
 
-
+less file.ext
 
 13.  How would I run the commandkeurigtaking its input from a file calledbeans?
 
@@ -58,7 +65,7 @@ commandkeurigtaking < calledbeans
 
 14.  How can I take the output of abakecommand and use it as input for aslicecommand?
 
-aslicecommand < abakecommand
+abakecommand > aslicecommand
 
 15.  What’s the command to print a long directory listing (names, permissions, owner, length,etc)?
 
@@ -66,4 +73,5 @@ ls -l
 
 16.  What’s the command to alter the permissions of a file to allow the owner to read, write,or execute the file?
 
+chmod u+rwx file.ext
 
