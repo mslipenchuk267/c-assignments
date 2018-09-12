@@ -18,8 +18,7 @@ int contains_dup(int A[], int len);
 
 int main(int argc, char **argv)
 {
-  //int A[] = {9, 505, 321, 117, 27, 64, 13, 9, 12, 208};
-  int A[] = {1,2,3,4,5,6,7,8,9,10};
+  int A[] = {9, 505, 321, 117, 27, 64, 13, 9, 12, 208};
   int B[LEN_A+1];
   int newValue=505;
 
