@@ -41,10 +41,8 @@ int main(int argc, char **argv)
   printf("The average of A[] is %f\n", average(A,LEN_A));
   printf("There are %d items in A[] less than this.\n", less_than_average(A,LEN_A));
 
-  /*
   reverse(A, LEN_A);
   print_array(A, LEN_A);
-  */
 
   rotate_right(A, LEN_A, 3);
   print_array(A, LEN_A);
