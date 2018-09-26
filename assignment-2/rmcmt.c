@@ -12,7 +12,7 @@ int main()
 	/* State variables and line number */
     int in_comment, out_comment,line_number = 0; 
     char file_name[BUFF_SIZE];
-	char[] temp_file_name[] = "rmcmt_temp.txt"
+	char[] temp_file_name[] = "rmcmt_temp.txt";
     char c;  /* Store char read from file */
   
     /* Get file name from user. User can provide 
