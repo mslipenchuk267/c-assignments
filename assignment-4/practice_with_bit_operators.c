@@ -31,45 +31,40 @@ unsigned int add(unsigned int i, unsigned int j)
 {
 /* can be done in a total of 7 lines, including one to declare an unsigned int, */
 /* two for a while loop, and one for the return */
-    while (y != 0) {
-        unsigned int carry = x & y;
-
-        x = x ^ y; 
-
-        y = carry << 1;
+	while (j != 0) {
+        int carry = i & j;
+        i = i ^ j; 
+        j = carry << 1;
     }
-    return x;
-	// return i + j;
+    return i;
 }
 
 unsigned int sub(unsigned int i, unsigned int j)
 {
 /* Similar 7 lines, although there is a shorter way */
-	// Iterate till there is no carry 
-    while (y != 0) 
-    { 
-        // borrow contains common  
-        // set bits of y and unset 
-        // bits of x 
-        int borrow = (~x) & y; 
-        // Subtraction of bits of x  
-        // and y where at least one 
-        // of the bits is not set 
-        x = x ^ y; 
-        // Borrow is shifted by one  
-        // so that subtracting it from 
-        // x gives the required sum 
-        y = borrow << 1; 
+    while (j != 0) { // Iterate until no carry
+        int borrow = (~i) & j;
+        i = i ^ j;  
+		// Subtracting i from borrow gives the sum 
+        j = borrow << 1; 
     } 
-    return x; 
-	//return i - j;
+    return i; 
 }
 
 unsigned int mul(unsigned int i, unsigned int j)
 {
 /* can be done in a total of 8 lines including one to declare unsigned ints */
 /* two for a for loop, and one for the return */
-	return i * j;
+	int result = 0;  // initialize result 
+    
+    while (j > 0) { // While second number doesn't become 1 
+        if (j & 1) { // If second number is odd, add the first number to result 
+            result = add(result,i); 
+		}
+        i = i << 1; // Double the first number
+        j = j >> 1; // Halve the second number 
+     } 
+     return result; 
 }
 
 /* returns non-zero if i is less than j or zero otherwise */
@@ -97,5 +92,7 @@ unsigned int gt(unsigned int i, unsigned int j)
 /* returns the jth byte of i */
 unsigned int getByte(unsigned int i, unsigned int j)
 {
-	
+	int result;
+	result = (i >> (mul(8,j))) & 0xff;
+	return result;
 }
