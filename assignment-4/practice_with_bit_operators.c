@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	printf("\ni * j = %u\n", mul(i,j));
 	printf("i > j = %s\n", (gt(i,j) ? "TRUE" : "FALSE"));
 	printf("i < j = %s\n", (lt(i,j) ? "TRUE" : "FALSE"));
-	printf("jth byte of i = %ux\n", getByte(i,1));
+	printf("jth byte of i = %ux\n", getByte(i,j));
 
 	return 0;
 }
