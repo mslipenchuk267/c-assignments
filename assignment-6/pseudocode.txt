@@ -1,0 +1,22 @@
+Pseudo Code:
+User Input Option
+-Get user input: username 
+-Search username for all matches in user/resource db
+	-if no match print no record found and show prompt again
+-Get Users role and username from user info db file
+-Search role/resource dv file for resource
+-Update user/resource db file with name and resource
+-Print out user and resource
+
+All at Once Option
+-Create db connections to user/role file
+-Create db connection to role/resource file
+-Create db connection to user/resource file
+-Iterate through records in user/role file
+	-get user
+	-search user/role file for all user role matches
+		-store role(s) in array
+	-write user#resource for all rresources matches role/resource file for all user role matches
+-Print user/resource file
+-Close all db files
+	
