@@ -1,5 +1,5 @@
 #include <stdio.h>      // printf
-#include <SQLite.h>    // SQLite header (from /usr/include)
+#include <SQLite.h>     // SQLite header (from /usr/include)
 
 int main()
 {
