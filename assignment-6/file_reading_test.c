@@ -1,23 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
- 
-int main(void)
+int main ( void )
 {
-	FILE *stream;
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
- 
-	stream = fopen("file.txt", "r");
-	if (stream == NULL)
-		exit(EXIT_FAILURE);
- 
-	while ((read = getline(&line, &len, stream)) != -1) {
-		printf("Retrieved line of length %u :\n", read);
-		printf("%s", line);
-	}
- 
-	free(line);
-	fclose(stream);
-	exit(EXIT_SUCCESS);
+   static const char filename[] = "person_ids";
+   FILE *file = fopen ( filename, "r" );
+   if ( file != NULL )
+   {
+      char line [ 128 ]; /* or other suitable maximum line size */
+      while ( fgets ( line, sizeof line, file ) != NULL ) /* read a line */
+      {
+         fputs ( line, stdout ); /* write the line */
+      }
+      fclose ( file );
+   }
+   else
+   {
+      perror ( filename ); /* why didn't the file open? */
+   }
+   return 0;
 }
