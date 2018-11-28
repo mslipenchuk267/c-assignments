@@ -1,9 +1,14 @@
-FILE *stream;
+#include <stdio.h>
+#include <stdlib.h>
+ 
+int main(void)
+{
+	FILE *stream;
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
  
-	stream = fopen("person_ids", "r");
+	stream = fopen("file.txt", "r");
 	if (stream == NULL)
 		exit(EXIT_FAILURE);
  
@@ -15,3 +20,4 @@ FILE *stream;
 	free(line);
 	fclose(stream);
 	exit(EXIT_SUCCESS);
+}
