@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main ( void )
 {
    static const char filename[] = "person_ids";
