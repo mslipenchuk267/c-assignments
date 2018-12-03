@@ -22,13 +22,13 @@ int main ( void ){
 			
 			while (token != NULL) {		/* Print tokens while delimiter present in line */
 				strcat ( sql_values, token );
-				printf("%s\n", token); 				
 				strcat( sql_values, ", " );
 				token = strtok(NULL, "#");		/* retreieve next token */
 			}
 			
 			int len = strlen(sql_values);
-			sql_values[len-2] = '\0';			/* Remove last ", " from string" */
+			//sql_values[len-2] = '\0';			/* Remove last ", " from string" */
+			
 			strcat( sql_values, " );" );
 			printf("%s\n", sql_values); 	
 		}
