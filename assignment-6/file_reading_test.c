@@ -7,7 +7,7 @@ int populate_table ( void ){
 	int onHeader = 1;
 	
     if (file != NULL) {
-		char line [ 128 ];
+		char line[ 128 ];
 		char *sql; /* SQL statement strinf */
 		while ( fgets ( line, sizeof line, file ) != NULL ){	/* read line from file*/
 			if ( onHeader ) {
@@ -15,14 +15,13 @@ int populate_table ( void ){
 				continue;	/* Skip header line in file */
 			}
 			fputs ( line, stdout );		/* write line from file */
-			char str[] = line; 
 			char sql_values[ ] = "VALUES (" ;	/* "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );" */
-			char* token = strtok(str, "#");		/* Return 1st token */
+			char* token = strtok(line, "#");		/* Return 1st token */
 			
 			strcat ( sql_values, token );
 			strcat( sql_values, "," );
 			
-			while (token != NULL) {		/* Print tokens while delimiter present in str[] */
+			while (token != NULL) {		/* Print tokens while delimiter present in line */
 				strcat ( sql_values, token );
 				printf("%s\n", token); 				
 				strcat( sql_values, ", " );
