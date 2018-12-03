@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 /* int populate_table (char *filename, char *sql_name){ */
 int populate_table ( void ){
 	static const char filename[] = "person_ids";
