@@ -14,7 +14,6 @@ int main ( void ){
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			fputs ( line, stdout );		/* write line from file */
 			char sql_values[ ] = "VALUES (" ;	/* "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );" */
 			char* token = strtok(line, "#");		/* Return 1st token */
 			
