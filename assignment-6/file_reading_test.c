@@ -34,7 +34,7 @@ int main ( void ){
 			//}
 			
 			int len = strlen(sql_values);
-			sql_values[len-2] = " );";			/* Remove last ", " from string" */
+			sql_values[len-2] = ");";			/* Remove last ", " from string" */
 			
 			//strcat( sql_values, " );" );
 			printf("%s\n", sql_values); 	
