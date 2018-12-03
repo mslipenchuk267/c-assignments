@@ -15,16 +15,23 @@ int main ( void ){
 				continue;	/* Skip header line in file */
 			}
 			char sql_values[ ] = "VALUES (" ;	/* "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );" */
-			char* token = strtok(line, "#");		/* Return 1st token */
+			//char* token = strtok(line, "#");		/* Return 1st token */
 			
-			strcat ( sql_values, token );
-			strcat( sql_values, "," );
+			//strcat ( sql_values, token );
+			//strcat( sql_values, "," );
 			
-			while (token != NULL) {		/* Print tokens while delimiter present in line */
+			char* token = strtok(line, "#");
+			while (token) {
 				strcat ( sql_values, token );
 				strcat( sql_values, ", " );
-				token = strtok(NULL, "#");		/* retreieve next token */
+				token = strtok(NULL, " ");
 			}
+			
+			//while (token != NULL) {		/* Print tokens while delimiter present in line */
+			//	strcat ( sql_values, token );
+			//	strcat( sql_values, ", " );
+			//	token = strtok(NULL, "#");		/* retreieve next token */
+			//}
 			
 			int len = strlen(sql_values);
 			//sql_values[len-2] = '\0';			/* Remove last ", " from string" */
