@@ -6,6 +6,7 @@ int main ( void ){
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = ", ";
+	char end_statement[] = " );";
 	
     if (file != NULL) {
 		char line[ 128 ];
@@ -26,7 +27,8 @@ int main ( void ){
 					strcat(result, comma);
 				}
 			}
-			printf("%s", result);			
+			strcat(result, end_statement);
+			printf("%s\n", result);			
 		}
     fclose(file);
     }
