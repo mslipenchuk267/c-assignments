@@ -25,9 +25,10 @@ int main ( void ){
 				token = strtok(NULL, delims);
 				if (token != NULL) {
 					strcat(result, comma);
+				} else {
+					strcat(result, end_statement);
 				}
 			}
-			strcat(result, end_statement);
 			printf("%s\n", result);			
 		}
     fclose(file);
