@@ -5,6 +5,7 @@ int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
+	char comma[2] = ", ";
 	
     if (file != NULL) {
 		char line[ 128 ];
@@ -21,6 +22,9 @@ int main ( void ){
 			while(token != NULL) {
 				strcat(result, token);
 				token = strtok(NULL, delims);
+				if (token != NULL) {
+					strcat(result, comma);
+				}
 			}
 			printf("%s", result);			
 		}
