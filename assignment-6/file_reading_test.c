@@ -19,8 +19,8 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token != NULL) {
-				printf("token = '%s'\n", token);
 				strcat(result, token);
+				strcar(result, ", ");
 				token = strtok(NULL, delims);
 			}
 			printf("%s\n", result);			
