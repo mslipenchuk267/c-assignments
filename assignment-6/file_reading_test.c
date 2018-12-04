@@ -23,7 +23,7 @@ int main ( void ){
 				strcat(result, ", ");
 				token = strtok(NULL, delims);
 			}
-			printf("%s\n", result);			
+			printf("%s", result);			
 		}
     fclose(file);
     }
