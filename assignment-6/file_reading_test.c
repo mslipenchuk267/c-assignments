@@ -7,7 +7,8 @@
 int tokenIsNumber(char *token);
 
 int tokenIsNumber(char *token) { 
-    for (int i = 0; i < strlen(token); i++) 
+	int len strlen(token)
+    for (int i = 0; i < len; i++) 
         if (~isdigit(token[i])) 
             return 0; /* 0 - false */
   
