@@ -20,7 +20,7 @@ int main ( void ){
 			token = strtok(line, delims);
 			while(token != NULL) {
 				strcat(result, token);
-				strcar(result, ", ");
+				strcat(result, ", ");
 				token = strtok(NULL, delims);
 			}
 			printf("%s\n", result);			
