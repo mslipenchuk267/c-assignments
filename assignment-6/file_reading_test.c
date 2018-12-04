@@ -46,3 +46,11 @@ int main ( void ){
     }
     return 0;
 }
+
+int tokenIsNumber(char *token) { 
+    for (int i = 0; i < s.length(); i++) 
+        if (isdigit(s[i]) == false) 
+            return 0; /* 0 - false */
+  
+    return 1; /* 1 - true */
+} 
