@@ -23,7 +23,7 @@ int main ( void ){
 			while(token) {
 				// Prepare token for sql statement
 				// ex. John must be in form of 'John' as per SQlite syntax
-				if (tokenIsNumber(token)) {
+				if (~tokenIsNumber(token)) {
 					strcat("'", token);
 					strcat(token, "'");
 				}
