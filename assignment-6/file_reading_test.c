@@ -24,7 +24,7 @@ int main ( void ){
 			while (token != NULL) {
 				strcat ( sql_values, token );
 				strcat( sql_values, ", " );
-				token = strtok(NULL, " ");
+				token = strtok(NULL, "#");
 			}
 			
 			//while (token != NULL) {		/* Print tokens while delimiter present in line */
