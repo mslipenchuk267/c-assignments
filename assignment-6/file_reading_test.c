@@ -20,10 +20,10 @@ int main ( void ){
 			char result[] = "VALUES (";
 			char* token;
 			token = strtok(line, delims);
-			while(token != NULL) {
+			while(token) {
 				strcat(result, token);
-				token = strtok(NULL, delims);
-				if (token != NULL) {
+				token = strtok(NULL, delims); /* New token */
+				if (token != NULL) {	
 					strcat(result, comma);
 				} else {
 					strcat(result, end_statement);
