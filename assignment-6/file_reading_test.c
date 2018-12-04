@@ -4,7 +4,7 @@
 #include "db_helper.h"
 /* int populate_table (char *filename, char *sql_name){ */
 
-int tokenIsNumber(char *token);
+int tokenIsNumber(char token[]);
 
 int tokenIsNumber(char token[]) { 
 	int i;
