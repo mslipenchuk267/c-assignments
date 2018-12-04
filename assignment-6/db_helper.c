@@ -17,9 +17,9 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 bool tokenIsNumber(char *token) { 
     for (int i = 0; i < s.length(); i++) 
         if (isdigit(s[i]) == false) 
-            return false; 
+            return o; 
   
-    return true; 
+    return 1; 
 } 
 
 int create_db(char *filename) {
