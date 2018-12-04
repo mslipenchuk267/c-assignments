@@ -14,31 +14,16 @@ int main ( void ){
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char sql_values[ ] = "VALUES (" ;	/* "VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 );" */
-			//char* token = strtok(line, "#");		/* Return 1st token */
-			
-			//strcat ( sql_values, token );
-			//strcat( sql_values, "," );
-			
-			char* token = strtok(line, "#");
-			while (token != NULL) {
-				strcat ( sql_values, token );
-				strcat( sql_values, ", " );
-				token = strtok(NULL, "#");
+			char delims[] = "#";
+			char result[] = "VALUES (";
+			char* token;
+			token = strtok(line, delims);
+			while(token != NULL) {
+				printf("token = '%s'\n", token);
+				strcat(result, token);
+				token = strtok(NULL, delims);
 			}
-			
-			//while (token != NULL) {		/* Print tokens while delimiter present in line */
-			//	strcat ( sql_values, token );
-			//	strcat( sql_values, ", " );
-			//	token = strtok(NULL, "#");		/* retreieve next token */
-			//}
-			
-			//int len = strlen(sql_values);
-			//sql_values[len-2] = " )";			/* Remove last ", " from string" */
-			//strcat( sql_values, ";" );
-			
-			//strcat( sql_values, " );" );
-			printf("%s\n", sql_values); 	
+			printf("%s\n", result);			
 		}
     fclose(file);
     }
