@@ -1,4 +1,4 @@
-#ifndef DB_HELPER_H_   /* Include guard */
+#ifndef DB_HELPER_H_   // Include guard 
 #define DB_HELPER_H_
 
 int create_db(char *filename);  /* Creates table for each #-seperated file file */
