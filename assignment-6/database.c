@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
    int rc;
    char *sql;
 
-   /* Create database */
+   /* Open database */
    rc = sqlite3_open("myDatabase.db", &db);
    
    if( rc ) {
