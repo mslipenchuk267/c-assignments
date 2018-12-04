@@ -1,20 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 /* int populate_table (char *filename, char *sql_name){ */
-
-int tokenIsNumber(char *token);
-
-int tokenIsNumber(char *token) { 
-	int i;
-	int len = strlen(token);
-    for (int i = 0; i < len; i++) 
-        if (~isdigit(token[i])) 
-            return 0; /* 0 - false */
-  
-    return 1; /* 1 - true */
-} 
-
 int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
@@ -35,12 +21,6 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				// Prepare token for sql statement
-				// ex. John must be in form of 'John' as per SQlite syntax
-				//if (~tokenIsNumber(token)) {
-				strcat("'", token);
-				strcat(token, "'");
-				//}
 
 				strcat(result, token);
 				token = strtok(NULL, delims); /* New token */
@@ -59,4 +39,3 @@ int main ( void ){
     }
     return 0;
 }
-
