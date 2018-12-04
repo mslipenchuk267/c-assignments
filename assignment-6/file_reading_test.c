@@ -48,7 +48,7 @@ int main ( void ){
 }
 
 int tokenIsNumber(char *token) { 
-    for (int i = 0; i < token.length(); i++) 
+    for (int i = 0; i < strlen(token)-1; i++) 
         if (isdigit(token[i]) == 0) 
             return 0; /* 0 - false */
   
