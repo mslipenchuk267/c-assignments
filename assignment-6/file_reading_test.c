@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "db_helper.h"
 /* int populate_table (char *filename, char *sql_name){ */
 
