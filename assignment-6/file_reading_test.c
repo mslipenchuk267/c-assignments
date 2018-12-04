@@ -33,8 +33,9 @@ int main ( void ){
 			//	token = strtok(NULL, "#");		/* retreieve next token */
 			//}
 			
-			//int len = strlen(sql_values);
-			//sql_values[len-2] = ");";			/* Remove last ", " from string" */
+			int len = strlen(sql_values);
+			sql_values[len-2] = " )";			/* Remove last ", " from string" */
+			strcat( sql_values, ";" );
 			
 			//strcat( sql_values, " );" );
 			printf("%s\n", sql_values); 	
