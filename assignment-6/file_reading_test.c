@@ -4,9 +4,9 @@
 #include "db_helper.h"
 /* int populate_table (char *filename, char *sql_name){ */
 
-int tokenIsNumber(char token[]);
+int tokenIsNumber(char *token);
 
-int tokenIsNumber(char token[]) { 
+int tokenIsNumber(char *token) { 
 	int i;
     for (int i = 0; token[i] != '\0'; i++) 
         if (~isdigit(token[i])) 
@@ -37,7 +37,7 @@ int main ( void ){
 			while(token) {
 				// Prepare token for sql statement
 				// ex. John must be in form of 'John' as per SQlite syntax
-				if (~tokenIsNumber(token)) {
+				if (~tokenIsNumber(*token)) {
 					strcat("'", token);
 					strcat(token, "'");
 				}
