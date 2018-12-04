@@ -14,7 +14,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 }
 
 // Returns true if s is a number else false 
-bool tokenIsNumber(string s) { 
+bool tokenIsNumber(char *token) { 
     for (int i = 0; i < s.length(); i++) 
         if (isdigit(s[i]) == false) 
             return false; 
