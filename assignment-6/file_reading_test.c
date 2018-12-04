@@ -49,7 +49,7 @@ int main ( void ){
 
 int tokenIsNumber(char *token) { 
     for (int i = 0; i < strlen(token)-1; i++) 
-        if (isdigit(token[i]) == 0) 
+        if (~isdigit(token[i])) 
             return 0; /* 0 - false */
   
     return 1; /* 1 - true */
