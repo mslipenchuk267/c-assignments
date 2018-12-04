@@ -2,6 +2,17 @@
 #include <string.h>
 #include "db_helper.h"
 /* int populate_table (char *filename, char *sql_name){ */
+
+int tokenIsNumber(char *token);
+
+int tokenIsNumber(char *token) { 
+    for (int i = 0; i < strlen(token)-1; i++) 
+        if (~isdigit(token[i])) 
+            return 0; /* 0 - false */
+  
+    return 1; /* 1 - true */
+} 
+
 int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
@@ -47,10 +58,3 @@ int main ( void ){
     return 0;
 }
 
-int tokenIsNumber(char *token) { 
-    for (int i = 0; i < strlen(token)-1; i++) 
-        if (~isdigit(token[i])) 
-            return 0; /* 0 - false */
-  
-    return 1; /* 1 - true */
-} 
