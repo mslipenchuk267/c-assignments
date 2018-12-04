@@ -14,12 +14,12 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 }
 
 // Returns true if s is a number else false 
-bool tokenIsNumber(char *token) { 
+int tokenIsNumber(char *token) { 
     for (int i = 0; i < s.length(); i++) 
         if (isdigit(s[i]) == false) 
-            return o; 
+            return 0; /* 0 - false */
   
-    return 1; 
+    return 1; /* 1 - true */
 } 
 
 int create_db(char *filename) {
