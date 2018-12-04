@@ -10,7 +10,7 @@ int main ( void ){
 	
     if (file != NULL) {
 		char line[ 128 ];
-		char *sql; /* SQL statement strinf */
+		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ){	/* read line from file*/
 			if ( onHeader ) {
 				onHeader = 0;
@@ -21,6 +21,13 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
+				// Prepare token for sql statement
+				// ex. John must be in form of 'John' as per SQlite syntax
+				if (tokenIsNumber(token)) {
+					strcat("'", token);
+					strcat(token, "'");
+				}
+
 				strcat(result, token);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
