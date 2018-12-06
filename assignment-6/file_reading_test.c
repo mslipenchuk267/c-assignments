@@ -22,13 +22,15 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				strcat(result, seperator);
+				//strcat(result, seperator);
 				strcat(result, token);
-				//strcat(result, "'");
+				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
-				if (token != NULL) {	
+				if (token != NULL) {
+					strcat(result, seperator);					
 					strcat(result, comma);
 				} else {
+					strcat(result, seperator);
 					strcat(result, end_statement);
 				}
 			}
