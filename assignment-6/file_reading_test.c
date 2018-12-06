@@ -5,7 +5,7 @@ int main ( void ){
 	static const char filename[] = "person_names";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char comma[] = ", ";
+	char seperator[] = ", ";
 	char single_quote[] = "'";
 	char end_statement[] = " );";
 	
@@ -22,15 +22,19 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				strcat(result, "'");
-				strcat(result, token);
-				strcat(result, "'");
-				token = strtok(NULL, delims); /* New token */
-				if (token != NULL) {	
-					strcat(result, comma);
+				//strcat(result, "'");
+				//strcat(result, token);
+				//strcat(result, "'");
+				
+				if (token != NULL) {
+					strcat(result, "'");
+					strcat(result, token);
+					strcat(result, "'");
+					strcat(result, seperator);
 				} else {
 					strcat(result, end_statement);
 				}
+				token = strtok(NULL, delims); /* New token */
 			}
 			printf("%s\n", result);			
 		}
