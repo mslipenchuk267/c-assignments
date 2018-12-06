@@ -6,7 +6,7 @@ int main ( void ){
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = ", ";
-	char single_quote = ",";
+	char single_quote[] = "'";
 	char end_statement[] = " );";
 	
     if (file != NULL) {
