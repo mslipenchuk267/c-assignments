@@ -2,7 +2,7 @@
 #include <string.h>
 /* int populate_table (char *filename, char *sql_name){ */
 int main ( void ){
-	static const char filename[] = "person_names";
+	static const char filename[] = "person_roles";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = ", ";
@@ -20,11 +20,11 @@ int main ( void ){
 			char delims[] = "#,\n";
 			char result[] = "VALUES (";
 			char* token;
-			token = strtok_r(line, delims);
+			token = strtok(line, delims);
 			while(token) {
-				//strcat(result, seperator);
+				strcat(result, seperator);
 				strcat(result, token);
-				//strcat(result, seperator);
+				strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
