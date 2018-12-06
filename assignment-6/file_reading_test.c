@@ -22,9 +22,9 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				strcat(single_quote,token);
-				strcat(token,single_quote);
+				starcat(result, "'");
 				strcat(result, token);
+				starcat(result, "'");
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
