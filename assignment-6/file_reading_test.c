@@ -10,7 +10,7 @@ int main ( void ){
 	char end_statement[] = " );";
 	
     if (file != NULL) {
-		char line[];
+		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
 			if ( onHeader ) {
