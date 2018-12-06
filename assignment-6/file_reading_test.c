@@ -21,7 +21,7 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				starcat("'",token);
+				strcat("'",token);
 				strcat(token,"'");
 				strcat(result, token);
 				token = strtok(NULL, delims); /* New token */
