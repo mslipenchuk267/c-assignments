@@ -6,7 +6,7 @@ int main ( void ){
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = ", ";
-	char single_quote[] = "'";
+	char seperator[] = "'";
 	char end_statement[] = " );";
 	
     if (file != NULL) {
@@ -22,7 +22,7 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				//strcat(result, "'");
+				strcat(result, seperator);
 				strcat(result, token);
 				//strcat(result, "'");
 				token = strtok(NULL, delims); /* New token */
