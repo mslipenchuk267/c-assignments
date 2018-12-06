@@ -12,7 +12,8 @@ int main ( void ){
     if (file != NULL) {
 		char line[ 128 ];
 		char *sql; /* SQL statement string */
-		while ( fgets ( line, sizeof line, file ) != NULL ){	/* read line from file*/
+		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
+			char str[] = line;
 			if ( onHeader ) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
@@ -20,7 +21,7 @@ int main ( void ){
 			char delims[] = "#,\n";
 			char result[] = "VALUES (";
 			char* token;
-			token = strtok(line, delims);
+			token = strtok(str, delims);
 			while(token) {
 				strcat(result, seperator);
 				strcat(result, token);
