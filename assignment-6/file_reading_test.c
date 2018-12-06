@@ -2,7 +2,7 @@
 #include <string.h>
 /* int populate_table (char *filename, char *sql_name){ */
 int main ( void ){
-	static const char filename[] = "person_names";
+	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char seperator[] = ", ";
