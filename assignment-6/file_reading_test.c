@@ -24,7 +24,7 @@ int main ( void ){
 			while(token) {
 				starcat(result, "'");
 				strcat(result, token);
-				starcat(result, "'");
+				strcat(result, "'");
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
