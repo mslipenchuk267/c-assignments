@@ -47,9 +47,9 @@ int main ( void ){
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				strcat(result, seperator);
+				//strcat(result, seperator);
 				strcat(result, token);
-				strcat(result, seperator);
+				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
