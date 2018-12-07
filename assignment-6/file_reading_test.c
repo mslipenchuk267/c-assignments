@@ -59,7 +59,7 @@ int main ( void ){
 			}
 			printf("%s\n", result);
 			
-			//sql = "INSERT INTO COMPANY (TUID,ACCESSNET) "  \
+			sql = "INSERT INTO COMPANY (TUID,ACCESSNET) "  \
 				  result;
 			/* Execute SQL statement */
 			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
