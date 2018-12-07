@@ -62,7 +62,8 @@ int create_tables(char *filename) {
 	  "GIVEN_NAME     TEXT    		      NOT NULL," \
 	  "MIDDLE_NAME	  TEXT    			  NOT NULL," \
 	  "SURNAME        TEXT    			  NOT NULL," \
-	  "PREFERRED_NAME TEXT    			  NOT NULL," );";
+	  "PREFERRED_NAME TEXT			      NOT NULL );";
+	  
 
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
@@ -79,7 +80,7 @@ int create_tables(char *filename) {
 	sql = "CREATE TABLE PERSON_ROLES("  \
 	  "TUID          CHAR(9) PRIMARY KEY	NOT NULL," \
 	  "ROLE_ID       INT             		NOT NULL," \
-	  "ROLE_EXP_DATE INT			    NOT NULL );";
+	  "ROLE_EXP_DATE INT			    	NOT NULL );";
 
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);

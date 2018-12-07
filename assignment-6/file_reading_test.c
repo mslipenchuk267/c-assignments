@@ -27,6 +27,22 @@ int main ( void ){
 	} else {
 	  fprintf(stderr, "Opened database successfully\n");
 	}
+	
+	/* Create SQL statement */
+	sql = "CREATE TABLE PERSON_IDS("  \
+	  "TUID         CHAR(9) PRIMARY KEY	NOT NULL," \
+	  "ACCESSNET    CHAR(8)			    NOT NULL );";
+
+	/* Execute SQL statement */
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	
+	if( rc != SQLITE_OK ){
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	} else {
+		fprintf(stdout, "Tables created successfully\n");
+	}
+	
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
@@ -43,7 +59,7 @@ int main ( void ){
 				continue;	/* Skip header line in file */
 			}
 			char delims[] = "#,\n";
-			char result[] = "VALUES ('";
+			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
@@ -59,8 +75,7 @@ int main ( void ){
 			}
 			printf("%s\n", result);
 			
-			sql = "INSERT INTO COMPANY (TUID,ACCESSNET) "  \
-				  result;
+			sql = result;
 			/* Execute SQL statement */
 			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
