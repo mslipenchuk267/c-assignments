@@ -17,7 +17,7 @@ int main ( void ){
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char delims[] = "#,\n";
+			char delims[] = "#,\n, ";
 			char result[] = "VALUES (";
 			char* token;
 			token = strtok(line, delims);
