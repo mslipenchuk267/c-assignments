@@ -1,13 +1,37 @@
 #include <stdio.h>
 #include <string.h>
 /* int populate_table (char *filename, char *sql_name){ */
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+   int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
+
+
 int main ( void ){
-	static const char filename[] = "person_names";
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+	char *sql;
+
+	/* Open database */
+	rc = sqlite3_open("test.db", &db);
+
+	if( rc ) {
+	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	  return(0);
+	} else {
+	  fprintf(stderr, "Opened database successfully\n");
+	}
+	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char comma[] = ", ";
+	char comma[] = "', '";
 	char seperator[] = "'";
-	char end_statement[] = " );";
+	char end_statement[] = "' );";
 	
     if (file != NULL) {
 		char line[256];
@@ -17,8 +41,8 @@ int main ( void ){
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char delims[] = "#,\n,\0";
-			char result[] = "VALUES (";
+			char delims[] = "#,\n";
+			char result[] = "VALUES ('";
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
@@ -33,11 +57,27 @@ int main ( void ){
 				}
 			}
 			printf("%s\n", result);
+			
+			sql = "INSERT INTO COMPANY (TUID,ACCESSNET) "  \
+				  result;
+			/* Execute SQL statement */
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+			if( rc != SQLITE_OK ){
+			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
+			  sqlite3_free(zErrMsg);
+			} else {
+			  fprintf(stdout, "Records created successfully\n");
+			}
+			
 		}
     fclose(file);
+	sqlite3_close(db);
     }
     else{
 		perror(filename); /* Error message */
     }
-    return 0;
+	
+	
+   return 0;
 }

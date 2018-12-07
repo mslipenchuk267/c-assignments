@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sqlite3.h> 
 
 #include "db_helper.h"
 
@@ -125,4 +126,45 @@ int create_tables(char *filename) {
 	sqlite3_close(db);
 
 	return 0;
+}
+
+int populate_given_table(char *filename, char *sql_command) {
+	static const char filename[] = "person_ids";
+    FILE *file = fopen ( filename, "r" );
+	int onHeader = 1;
+	char comma[] = ", ";
+	char seperator[] = "'";
+	char end_statement[] = " );";
+	
+    if (file != NULL) {
+		char line[256];
+		char *sql; /* SQL statement string */
+		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
+			if ( onHeader ) {
+				onHeader = 0;
+				continue;	/* Skip header line in file */
+			}
+			char delims[] = "#,\n";
+			char result[] = "VALUES (";
+			char* token;
+			token = strtok(line, delims);
+			while(token) {
+				strcat(result, seperator);
+				strcat(result, token);
+				strcat(result, seperator);
+				token = strtok(NULL, delims); /* New token */
+				if (token != NULL) {	
+					strcat(result, comma);
+				} else {
+					strcat(result, end_statement);
+				}
+			}
+			printf("%s\n", result);
+		}
+    fclose(file);
+    }
+    else{
+		perror(filename); /* Error message */
+    }
+    return 0;
 }
