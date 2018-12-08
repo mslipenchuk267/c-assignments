@@ -53,8 +53,9 @@ int main ( void ){
 	char end_command[] = ")";
 	char end_values[] = "' );";
 	
-	strcat(command, strupr(filename));
-	strcat(command, " ");
+	strupr(filename))
+	strcat(command, filename;
+	strcat(command, " (");
     if (file != NULL) {
 		char line[256];
 		char *sql; /* SQL statement string */
