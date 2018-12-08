@@ -117,7 +117,6 @@ int populate_table_from_file(char *filename) {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 	
-    //static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = "', '";
@@ -132,6 +131,7 @@ int populate_table_from_file(char *filename) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
+			
 			char delims[] = "#,\n";
 			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 			char* token;
