@@ -53,7 +53,7 @@ int main ( void ){
 	char end_command[] = ")";
 	char end_values[] = "' );";
 	
-	strupr(filename))
+	strupr(filename));
 	strcat(command, filename;
 	strcat(command, " (");
     if (file != NULL) {
