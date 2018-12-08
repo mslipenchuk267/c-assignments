@@ -103,7 +103,6 @@ int create_tables(char *filename) {
 }
 
 int populate_given_table(char *filename, char *sql_command) {
-	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = "', '";
@@ -111,7 +110,7 @@ int populate_given_table(char *filename, char *sql_command) {
 	char end_statement[] = "' );";
 	
     if (file != NULL) {
-		char line[256];
+		char line[128];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
 			if ( onHeader ) {
