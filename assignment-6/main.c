@@ -124,7 +124,7 @@
 int main(int argc, char **argv) {
 	create_db("my_database.db");
 	create_tables("my_database.db");
-	populate_table_from_file("my_database.db","person_ids");
+	populate_table_from_file("my_database.db","person_ids","INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('");
 	
 	
 	return 0;

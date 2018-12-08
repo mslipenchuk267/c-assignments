@@ -102,7 +102,7 @@ int create_tables(char *dbname) {
 	return 0;
 }
 
-int populate_table_from_file(char *dbname, char *filename) {
+int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
@@ -134,7 +134,7 @@ int populate_table_from_file(char *dbname, char *filename) {
 				continue;	/* Skip header line in file */
 			}
 			char delims[] = "#,\n";
-			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
+			char result[] = sql_command;
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
