@@ -53,8 +53,8 @@ int main ( void ){
 	char end_command[] = ")";
 	char end_values[] = "' );";
 	
-	strupr(filename));
-	strcat(command, filename;
+	strupr(filename);
+	strcat(command, filename);
 	strcat(command, " (");
     if (file != NULL) {
 		char line[256];
