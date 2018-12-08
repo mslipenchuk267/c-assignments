@@ -14,6 +14,11 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
+int main(int argc, char **argv) {
+	create_db();
+	return 0;
+}
+
 int create_db(char *filename) {
 	sqlite3 *db;
 	char *zErrMsg = 0;

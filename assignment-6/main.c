@@ -4,6 +4,6 @@
 #include "sqlite3.h"
 
 int main(int argc, char **argv) {
-	create_db("my_database.db");
+	create_db();
 	return 0;
 }
