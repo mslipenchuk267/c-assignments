@@ -1,5 +1,5 @@
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 #include "sqlite3.h" 
 /* int populate_table (char *filename, char *sql_name){ */
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
@@ -46,59 +46,36 @@ int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	
-	char command[] = "INSERT INTO ";
-	char comma[] = ",";
-	char comma_single_quote[] = "', '";
+	char comma[] = "', '";
 	char seperator[] = "'";
-	char end_command[] = ")";
-	char end_values[] = "' );";
+	char end_statement[] = "' );";
 	
-	//strupr(filename);
-	strcat(command, filename);
-	strcat(command, " (");
     if (file != NULL) {
 		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
-			char delims[] = "#,\n";
-			//char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
-			char values[] = " VALUES ('";
-			char* token;
 			if ( onHeader ) {
-				token = strtok(line, delims);
-				while(token) {
-					//strcat(result, seperator);
-					strcat(command, token);
-					//strcat(result, seperator);
-					token = strtok(NULL, delims); /* New token */
-					if (token != NULL) {	
-						strcat(command, comma);
-					} else {
-						strcat(command, end_command);
-					}
-				}
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			
+			char delims[] = "#,\n";
+			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
+			char* token;
 			token = strtok(line, delims);
 			while(token) {
 				//strcat(result, seperator);
-				strcat(values, token);
+				strcat(result, token);
 				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
-					strcat(values, comma_single_quote);
+					strcat(result, comma);
 				} else {
-					strcat(values, end_values);
+					strcat(result, end_statement);
 				}
 			}
-			printf("%s\n", values);
+			printf("%s\n", result);
 			
-			strcat(command,values);
-			
-			sql = command;
+			sql = result;
 			/* Execute SQL statement */
 			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
