@@ -107,16 +107,18 @@ int populate_table_from_file(char *filename) {
 	char *zErrMsg = 0;
 	int rc;
 	char *sql;
-	
+
 	/* Open database */
 	rc = sqlite3_open(filename, &db);
+
 	if( rc ) {
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-		return(0);
+	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	  return(0);
 	} else {
-		fprintf(stdout, "Opened database successfully\n");
+	  fprintf(stderr, "Opened database successfully\n");
 	}
 	
+	//static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = "', '";
@@ -131,7 +133,6 @@ int populate_table_from_file(char *filename) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			
 			char delims[] = "#,\n";
 			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 			char* token;
@@ -168,5 +169,5 @@ int populate_table_from_file(char *filename) {
 		perror(filename); /* Error message */
     }
 	
-    return 0;
+   return 0;
 } 
