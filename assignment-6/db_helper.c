@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sqlite3.h> 
-
+//#include <sqlite3.h> 
 #include "db_helper.h"
+
 /* Prints out all Entries */
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
