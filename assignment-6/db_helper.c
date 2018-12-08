@@ -63,8 +63,8 @@ int create_tables(char *dbname) {
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_ROLES("  \
 	  "TUID          CHAR(9) PRIMARY KEY	NOT NULL," \
-	  "ROLE_ID       INT             		NOT NULL," \
-	  "ROLE_EXP_DATE INT			    	NOT NULL );";
+	  "ROLE_ID       TEXT             		NOT NULL," \
+	  "ROLE_EXP_DATE TEXT			    	NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
@@ -75,19 +75,19 @@ int create_tables(char *dbname) {
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCE("  \
-	  "ID 		 INT    PRIMARY KEY	NOT NULL," \
+	  "ID 		 TEXT    PRIMARY KEY	NOT NULL," \
 	  "NAME      CHAR(6)			NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCES_ROLES("  \
-	  "RESOURCE_ID INT    PRIMARY KEY	NOT NULL," \
-	  "ROLE_ID     INT				    NOT NULL );";
+	  "RESOURCE_ID TEXT    PRIMARY KEY	NOT NULL," \
+	  "ROLE_ID     TEXT				    NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCE_REQUIREMENTS("  \
-	  "RESOURCE_ID 		  INT     PRIMARY KEY NOT NULL," \
+	  "RESOURCE_ID 		  TEXT     PRIMARY KEY NOT NULL," \
 	  "PERSON_NAME_TYPE   CHAR(9)     		  NOT NULL," \
 	  "PERSON_ID_TYPE     CHAR(9)		   	  NOT NULL );";
 	/* Execute SQL statement */
