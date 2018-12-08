@@ -125,7 +125,6 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
-	char result[strlen(sql_somand)];
 	
     if (file != NULL) {
 		char line[256];
