@@ -14,7 +14,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
-void _start(int argc, char **argv) {
+void _start() {
 	create_db("my_database.db");
 }
 
