@@ -122,6 +122,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	//static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
+	char *result;
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
@@ -135,7 +136,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 				continue;	/* Skip header line in file */
 			}
 			char delims[] = "#,\n";
-			char result[] = (char *)malloc(strlen(sql_command));
+			result = (char *)malloc(strlen(sql_command));
 			strcpy(result,sql_command);
 			char* token;
 			token = strtok(line, delims);
