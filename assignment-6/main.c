@@ -122,5 +122,7 @@
 	      code in some places.
 ***************************************************************************/
 int main(int argc, char **argv) {
-	return create_db("my_databse.db");
+	create_db("my_database.db");
+	create_tables("my_database.db");
+	return 0;
 }
