@@ -19,7 +19,7 @@ int main ( void ){
 	char *sql;
 
 	/* Open database */
-	rc = sqlite3_open("test.db", &db);
+	rc = sqlite3_open("my_database.db", &db);
 
 	if( rc ) {
 	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
@@ -46,21 +46,40 @@ int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char comma[] = "', '";
+	char command[] = "INSERT INTO ";
+	char comma[] = ",";
+	char comma_single_quote[] = "', '";
 	char seperator[] = "'";
-	char end_statement[] = "' );";
+	char end_command[] = ")";
+	char end_values[] = "' );";
 	
+	strcat(command, strupr(filename));
+	strcat(command, " ");
     if (file != NULL) {
 		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
+			char delims[] = "#,\n";
+			//char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
+			char values[] = " VALUES ('";
+			char* token;
 			if ( onHeader ) {
+				token = strtok(line, delims);
+				while(token) {
+					//strcat(result, seperator);
+					strcat(command, token);
+					//strcat(result, seperator);
+					token = strtok(NULL, delims); /* New token */
+					if (token != NULL) {	
+						strcat(command, comma);
+					} else {
+						strcat(command, end_command);
+					}
+				}
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char delims[] = "#,\n";
-			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
-			char* token;
+			
 			token = strtok(line, delims);
 			while(token) {
 				//strcat(result, seperator);
@@ -68,14 +87,16 @@ int main ( void ){
 				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
-					strcat(result, comma);
+					strcat(result, comma_single_quote);
 				} else {
-					strcat(result, end_statement);
+					strcat(result, end_values);
 				}
 			}
 			printf("%s\n", result);
 			
-			sql = result;
+			strcat(command,values);
+			
+			sql = command;
 			/* Execute SQL statement */
 			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 

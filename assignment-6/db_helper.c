@@ -130,15 +130,48 @@ int create_tables(char *filename) {
 }
 
 int populate_given_table(char *filename, char *sql_command) {
-	static const char filename[] = "person_ids";
-    FILE *file = fopen ( filename, "r" );
-	int onHeader = 1;
-	char comma[] = ", ";
-	char seperator[] = "'";
-	char end_statement[] = " );";
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+	char *sql;
+
+	/* Open database */
+	rc = sqlite3_open("my_database.db", &db);
+
+	if( rc ) {
+	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	  return(0);
+	} else {
+	  fprintf(stderr, "Opened database successfully\n");
+	}
+
+	/* Create SQL statement */
+	sql = "CREATE TABLE PERSON_IDS("  \
+	  "TUID         CHAR(9) PRIMARY KEY	NOT NULL," \
+	  "ACCESSNET    CHAR(8)			    NOT NULL );";
+
+	/* Execute SQL statement */
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+	if( rc != SQLITE_OK ){
+		fprintf(stderr, "SQL error: %s\n", zErrMsg);
+		sqlite3_free(zErrMsg);
+	} else {
+		fprintf(stdout, "Tables created successfully\n");
+	}
 	
-    if (file != NULL) {
-		char line[256];
+	//static const char filename[] = "person_ids";
+	FILE *file = fopen ( filename, "r" );
+	int onHeader = 1;
+	char result[] = "INSERT INTO "
+	char comma[] = "', '";
+	char seperator[] = "'";
+	char end_statement[] = "' );";
+	
+	strcat(result,strupt(filename))
+	
+	if (file != NULL) {
+		char line[128];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
 			if ( onHeader ) {
@@ -146,13 +179,13 @@ int populate_given_table(char *filename, char *sql_command) {
 				continue;	/* Skip header line in file */
 			}
 			char delims[] = "#,\n";
-			char result[] = "VALUES (";
+			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				strcat(result, seperator);
+				//strcat(result, seperator);
 				strcat(result, token);
-				strcat(result, seperator);
+				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
@@ -161,11 +194,26 @@ int populate_given_table(char *filename, char *sql_command) {
 				}
 			}
 			printf("%s\n", result);
+			
+			sql = result;
+			/* Execute SQL statement */
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+			if( rc != SQLITE_OK ){
+			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
+			  sqlite3_free(zErrMsg);
+			} else {
+			  fprintf(stdout, "Records created successfully\n");
+			}
+			
 		}
-    fclose(file);
-    }
-    else{
+	fclose(file);
+	sqlite3_close(db);
+	}
+	else{
 		perror(filename); /* Error message */
-    }
-    return 0;
+	}
+
+
+	return 0;
 }
