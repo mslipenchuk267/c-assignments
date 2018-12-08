@@ -102,3 +102,68 @@ int create_tables(char *filename) {
 	return 0;
 }
 
+int populate_given_table(char *filename, char *sql_command) {
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+	char *sql;
+	
+	/* Open database */
+	rc = sqlite3_open(filename, &db);
+	if( rc ) {
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+		return(0);
+	} else {
+		fprintf(stdout, "Opened database successfully\n");
+	}
+	
+    FILE *file = fopen ( filename, "r" );
+	int onHeader = 1;
+	char comma[] = "', '";
+	char seperator[] = "'";
+	char end_statement[] = "' );";
+	
+    if (file != NULL) {
+		char line[128];
+		char *sql; /* SQL statement string */
+		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
+			if ( onHeader ) {
+				onHeader = 0;
+				continue;	/* Skip header line in file */
+			}
+			char delims[] = "#,\n";
+			char result[] = sql_command;
+			char* token;
+			token = strtok(line, delims);
+			while(token) {
+				strcat(result, token);
+				token = strtok(NULL, delims); /* New token */
+				if (token != NULL) {	
+					strcat(result, comma);
+				} else {
+					strcat(result, end_statement);
+				}
+			}
+			printf("%s\n", result);
+			
+			sql = result;
+			/* Execute SQL statement */
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+
+			if( rc != SQLITE_OK ){
+			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
+			  sqlite3_free(zErrMsg);
+			} else {
+			  fprintf(stdout, "Records created successfully\n");
+			}
+			
+		}
+    fclose(file);
+	sqlite3_close(db);
+    }
+    else {
+		perror(filename); /* Error message */
+    }
+	sqlite3_close(db);
+   return 0;
+} 
