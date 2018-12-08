@@ -102,7 +102,7 @@ int create_tables(char *filename) {
 	return 0;
 }
 
-int populate_given_table(char *filename, char *sql_command) {
+int populate_table_from_file(char *filename, char *sql_command) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
