@@ -121,21 +121,6 @@
 	      code in some places.
 ***************************************************************************/
 int main(int argc, char **argv) {
-  /* The code below is one example of how you might write tests. I've
-     also included it to demonstrate how to use the getValue function. */
-  char **val = getValue("resources_roles", "19", 1, 0);
-
-  int index = 0;
-  if (val != NULL){
-    while (index != -1) {
-      printf("val[%d]: %s\n", index, val[index]);
-      index = val[index+1] != NULL ? index + 1 : -1;
-    }
-  }
-  /* This demonstrates how to use the newRole function, which is
-     implemented in db_helper.c (declared in db_helper.h). */
-  char *str = "student";
-  Role *role = newRole(atoi(val[0]), "student");
-  printf("Constructed the role \"object\" for the role, student.\n");
-  return 1;
+	create_db("my_database.db");
+	return 1;
 }

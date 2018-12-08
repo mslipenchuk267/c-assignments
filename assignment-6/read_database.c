@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
    }
 
    /* Create SQL statement */
-   sql = "SELECT * from PERSON_IDS";
+   sql = "SELECT TUID from PERSON_IDS where TUID = '912086676'";
 
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);

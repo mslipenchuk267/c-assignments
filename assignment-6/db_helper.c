@@ -4,7 +4,7 @@
 #include <sqlite3.h> 
 
 #include "db_helper.h"
-
+/* Prints out all Entries */
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
    for(i = 0; i<argc; i++) {
@@ -144,7 +144,7 @@ int populate_given_table(char *filename, char *sql_command) {
 	} else {
 	  fprintf(stderr, "Opened database successfully\n");
 	}
-
+	
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_IDS("  \
 	  "TUID         CHAR(9) PRIMARY KEY	NOT NULL," \
@@ -152,7 +152,7 @@ int populate_given_table(char *filename, char *sql_command) {
 
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-
+	
 	if( rc != SQLITE_OK ){
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -161,17 +161,14 @@ int populate_given_table(char *filename, char *sql_command) {
 	}
 	
 	//static const char filename[] = "person_ids";
-	FILE *file = fopen ( filename, "r" );
+    FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char result[] = "INSERT INTO "
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
 	
-	strcat(result,strupt(filename))
-	
-	if (file != NULL) {
-		char line[128];
+    if (file != NULL) {
+		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
 			if ( onHeader ) {
@@ -207,13 +204,12 @@ int populate_given_table(char *filename, char *sql_command) {
 			}
 			
 		}
-	fclose(file);
+    fclose(file);
 	sqlite3_close(db);
-	}
-	else{
+    }
+    else{
 		perror(filename); /* Error message */
-	}
-
-
-	return 0;
+    }
+	
+   return 0;
 }

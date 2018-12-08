@@ -94,6 +94,5 @@ int main ( void ){
 		perror(filename); /* Error message */
     }
 	
-	
    return 0;
 }
