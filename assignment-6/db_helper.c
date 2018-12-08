@@ -14,12 +14,12 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
-int create_db() {
+int create_db(char* filename) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 
-	rc = sqlite3_open("my_database.db", &db);
+	rc = sqlite3_open(filename, &db);
 
 	if( rc ) {
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
