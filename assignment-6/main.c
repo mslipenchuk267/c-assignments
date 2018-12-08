@@ -121,6 +121,6 @@
 	      needed to sacrifice efficiency and better organization of the
 	      code in some places.
 ***************************************************************************/
-int main(int argc, char **argv) {
+int main(void) {
 	return create_db();
 }
