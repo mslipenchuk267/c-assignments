@@ -132,7 +132,8 @@ int populate_table_from_file(char *filename, char *sql_command) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			result = sql_command; 
+			strcpy(result,sql_command);
+			//result = sql_command; 
 			char delims[] = "#,\n";
 			char* token;
 			token = strtok(line, delims);
