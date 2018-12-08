@@ -122,6 +122,5 @@
 	      code in some places.
 ***************************************************************************/
 int main(int argc, char **argv) {
-	
-	return create_db("my_database.db");
+	return create_db();
 }
