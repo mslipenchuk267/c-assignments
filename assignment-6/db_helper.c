@@ -3,7 +3,7 @@
 #include <string.h>
 #include "sqlite3.h" 
 #include "db_helper.h"
-
+#define MAX 256
 /* Prints out all Entries */
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
@@ -136,7 +136,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 				continue;	/* Skip header line in file */
 			}
 			char delims[] = "#,\n";
-			result = (char *)malloc(256);
+			result = (char *)malloc(MAX);
 			strcpy(result,sql_command);
 			char* token;
 			token = strtok(line, delims);
