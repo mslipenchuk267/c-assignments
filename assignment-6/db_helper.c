@@ -102,12 +102,13 @@ int create_tables(char *dbname) {
 	return 0;
 }
 
-int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
+int populate_table_from_file(char *dbname, char *filename) {
+	//"INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('"
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 	char *sql;
-
+	
 	/* Open database */
 	rc = sqlite3_open(dbname, &db);
 
@@ -124,17 +125,35 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
+	char result[strlen(sql_somand)];
 	
     if (file != NULL) {
 		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
+			char delims[] = "#,\n";
+			char result[] = "INSERT INTO ";
+			strcat(result,strupr(filename);
+			strcat(result," (");
 			if ( onHeader ) {
+				char* token;
+				token = strtok(line, delims);
+				while(token) {
+					//strcat(result, seperator);
+					strcat(result, strupr(token));
+					//strcat(result, seperator);
+					token = strtok(NULL, delims); /* New token */
+					if (token != NULL) {	
+						strcat(result, ",");
+					} else {
+						strcat(result, ") VALUES ('");
+					}
+				}
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char delims[] = "#,\n";
-			char result[] = sql_command;
+			
+			
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
