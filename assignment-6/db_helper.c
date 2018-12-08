@@ -14,12 +14,12 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
-int create_db(char* filename) {
+int create_db(char* dbname) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 
-	rc = sqlite3_open(filename, &db);
+	rc = sqlite3_open(dbname, &db);
 
 	if( rc ) {
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
@@ -31,13 +31,13 @@ int create_db(char* filename) {
 	return 0;
 }
 
-int create_tables(char *filename) {
+int create_tables(char *dbname) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 	char *sql;
 	/* Open database */
-	rc = sqlite3_open(filename, &db);
+	rc = sqlite3_open(dbname, &db);
 	if( rc ) {
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 		return(0);
@@ -102,14 +102,14 @@ int create_tables(char *filename) {
 	return 0;
 }
 
-int populate_table_from_file(char *filename) {
+int populate_table_from_file(char *dbname, char *filename) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
 	char *sql;
 
 	/* Open database */
-	rc = sqlite3_open(filename, &db);
+	rc = sqlite3_open(dbname, &db);
 
 	if( rc ) {
 	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
