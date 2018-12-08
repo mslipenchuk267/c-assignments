@@ -80,7 +80,7 @@ int create_tables(char *dbname) {
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
-	sql = "CREATE TABLE RESOURCE_ROLES("  \
+	sql = "CREATE TABLE RESOURCES_ROLES("  \
 	  "RESOURCE_ID INT    PRIMARY KEY	NOT NULL," \
 	  "ROLE_ID     INT				    NOT NULL );";
 	/* Execute SQL statement */
@@ -103,7 +103,6 @@ int create_tables(char *dbname) {
 }
 
 int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
-	//"INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('"
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
