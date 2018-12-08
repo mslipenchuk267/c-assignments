@@ -46,6 +46,7 @@ int main ( void ){
 	static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
+	
 	char command[] = "INSERT INTO ";
 	char comma[] = ",";
 	char comma_single_quote[] = "', '";
@@ -53,7 +54,7 @@ int main ( void ){
 	char end_command[] = ")";
 	char end_values[] = "' );";
 	
-	strupr(filename);
+	//strupr(filename);
 	strcat(command, filename);
 	strcat(command, " (");
     if (file != NULL) {
@@ -84,16 +85,16 @@ int main ( void ){
 			token = strtok(line, delims);
 			while(token) {
 				//strcat(result, seperator);
-				strcat(result, token);
+				strcat(values, token);
 				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
-					strcat(result, comma_single_quote);
+					strcat(values, comma_single_quote);
 				} else {
-					strcat(result, end_values);
+					strcat(values, end_values);
 				}
 			}
-			printf("%s\n", result);
+			printf("%s\n", values);
 			
 			strcat(command,values);
 			
