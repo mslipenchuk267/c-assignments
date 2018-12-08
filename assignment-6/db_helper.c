@@ -119,7 +119,7 @@ int populate_table_from_file(char *filename, char *sql_command) {
 	
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char *result;
+	char result[] = " ";
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
