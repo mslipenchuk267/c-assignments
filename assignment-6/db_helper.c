@@ -14,15 +14,6 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
-// Returns true if s is a number else false 
-int tokenIsNumber(char *token) { 
-    for (int i = 0; i < s.length(); i++) 
-        if (isdigit(s[i]) == false) 
-            return 0; /* 0 - false */
-  
-    return 1; /* 1 - true */
-} 
-
 int create_db(char *filename) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
