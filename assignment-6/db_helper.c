@@ -117,7 +117,7 @@ int populate_table_from_file(char *filename) {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 	
-    static const char filename[] = "person_ids";
+    //static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char comma[] = "', '";
