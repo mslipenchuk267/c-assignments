@@ -117,29 +117,29 @@ int populate_table_from_file(char *filename) {
 		fprintf(stdout, "Opened database successfully\n");
 	}
 	
+    static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
-	char sql_command[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
-	char result[] = " ";
 	char comma[] = "', '";
 	char seperator[] = "'";
 	char end_statement[] = "' );";
 	
     if (file != NULL) {
-		char line[128];
+		char line[256];
 		char *sql; /* SQL statement string */
 		while ( fgets ( line, sizeof line, file ) != NULL ) {	/* read line from file*/
 			if ( onHeader ) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char result[] = sql_command;
-			//result = sql_command; 
 			char delims[] = "#,\n";
+			char result[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
+				//strcat(result, seperator);
 				strcat(result, token);
+				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
@@ -164,9 +164,9 @@ int populate_table_from_file(char *filename) {
     fclose(file);
 	sqlite3_close(db);
     }
-    else {
+    else{
 		perror(filename); /* Error message */
     }
-	sqlite3_close(db);
-   return 0;
+	
+    return 0;
 } 
