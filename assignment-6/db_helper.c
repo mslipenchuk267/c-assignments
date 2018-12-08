@@ -102,7 +102,7 @@ int create_tables(char *filename) {
 	return 0;
 }
 
-int populate_table_from_file(char *filename, char *sql_command) {
+int populate_table_from_file(char *filename) {
 	sqlite3 *db;
 	char *zErrMsg = 0;
 	int rc;
@@ -119,6 +119,7 @@ int populate_table_from_file(char *filename, char *sql_command) {
 	
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
+	char sql_command[] = "INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('";
 	char result[] = " ";
 	char comma[] = "', '";
 	char seperator[] = "'";
