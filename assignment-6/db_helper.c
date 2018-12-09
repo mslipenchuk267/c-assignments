@@ -62,9 +62,10 @@ int create_tables(char *dbname) {
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_ROLES("  \
-	  "TUID          CHAR(9) PRIMARY KEY	NOT NULL," \
-	  "ROLE_ID       TEXT             		NOT NULL," \
-	  "ROLE_EXP_DATE TEXT			    	NOT NULL );";
+	  "TUID          CHAR(9)             	NOT NULL," \
+	  "ROLE_ID       TEXT   	            NOT NULL," \
+	  "ROLE_EXP_DATE TEXT			    	NOT NULL," \
+	   "PRIMARY KEY (TUID,ROLE_ID));";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
