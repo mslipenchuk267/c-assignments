@@ -32,7 +32,19 @@ int main(int argc, char* argv[]) {
    }
 
    /* Create SQL statement */
-   sql = "SELECT TUID from PERSON_IDS where TUID = '912086676'";
+   sql = "SELECT * from PERSON_IDS";
+
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   
+   /* Create SQL statement */
+   sql = "SELECT * from PERSON_ROLES";
+
+   /* Execute SQL statement */
+   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   
+   /* Create SQL statement */
+   sql = "SELECT * from RESOURCES_ROLES";
 
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
