@@ -79,10 +79,10 @@ int create_tables(char *dbname) {
 	  "NAME      CHAR(6)			NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	/* Create SQL statement */
+	/* Create SQL statement - Composite key allows each record to be unique */
 	sql = "CREATE TABLE RESOURCES_ROLES("  \
 	  "RESOURCE_ID TEXT    	PRIMARY KEY		NOT NULL," \
-	  "ROLE_ID     TEXT						NOT NULL );";
+	  "ROLE_ID     TEXT		PRIMARY KEY		NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
