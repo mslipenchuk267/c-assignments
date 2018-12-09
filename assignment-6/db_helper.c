@@ -160,7 +160,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
 			  sqlite3_free(zErrMsg);
 			} else {
-			  fprintf(stdout, "Records created successfully\n");
+			  fprintf(stdout, "Record created successfully\n");
 			}
 			free(result);
 		}
