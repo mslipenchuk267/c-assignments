@@ -31,15 +31,6 @@ int main(int argc, char* argv[]) {
       fprintf(stderr, "Opened database successfully\n");
    }
 
-   /* Create SQL statement */
-   sql = "SELECT * from PERSON_IDS";
-
-   /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
-   
-   /* Create SQL statement */
-   sql = "SELECT * from PERSON_ROLES";
-
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
