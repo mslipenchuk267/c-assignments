@@ -82,7 +82,7 @@ int main ( void ){
 			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
 			  sqlite3_free(zErrMsg);
 			} else {
-			  fprintf(stdout, "Records created successfully\n");
+			  fprintf(stdout, "Record created successfully\n");
 			}
 			
 		}
