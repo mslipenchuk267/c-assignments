@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    /* Create SQL statement */
-   sql = "SELECT * from RESOURCES_ROLES where RESOURCE_ID ='1'";
+   sql = "SELECT * from RESOURCES_ROLES";
 
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
