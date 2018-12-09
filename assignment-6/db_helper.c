@@ -81,9 +81,9 @@ int create_tables(char *dbname) {
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCES_ROLES("  \
-	  "ID          TEXT     IDENTITY        NOT NULL," \
-	  "RESOURCE_ID TEXT    	PRIMARY KEY		NOT NULL," \
-	  "ROLE_ID     TEXT						NOT NULL );";
+	  "ID          INT     PRIMARY KEY AUTOINCREMENT	NOT NULL," \
+	  "RESOURCE_ID TEXT    								NOT NULL," \
+	  "ROLE_ID     TEXT									NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
