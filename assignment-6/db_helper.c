@@ -76,7 +76,7 @@ int create_tables(char *dbname) {
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCE("  \
 	  "ID 		 TEXT    PRIMARY KEY	NOT NULL," \
-	  "NAME      CHAR(6)			NOT NULL );";
+	  "NAME      CHAR(6)				NOT NULL );";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement - Composite key allows each record to be unique */
