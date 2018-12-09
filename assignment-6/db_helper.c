@@ -88,7 +88,7 @@ int create_tables(char *dbname) {
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCE_REQUIREMENTS("  \
-	  "RESOURCE_ID 		  TEXT     PRIMARY KEY NOT NULL," \
+	  "RESOURCE_ID 		  TEXT    PRIMARY KEY NOT NULL," \
 	  "PERSON_NAME_TYPE   CHAR(9)     		  NOT NULL," \
 	  "PERSON_ID_TYPE     CHAR(9)		   	  NOT NULL );";
 	/* Execute SQL statement */
