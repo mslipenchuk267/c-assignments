@@ -124,9 +124,9 @@
 int main(int argc, char **argv) {
 	create_db("my_database.db");
 	create_tables("my_database.db");
-	populate_table_from_file("my_database.db","person_ids","INSERT INTO PERSON_IDS (TUID,ACCESSNET) VALUES ('");
-	populate_table_from_file("my_database.db","person_roles","INSERT or IGNORE INTO PERSON_ROLES (TUID,ROLE_ID,ROLE_EXP_DATE) VALUES ('");
-	populate_table_from_file("my_database.db","resources_roles","INSERT or IGNORE INTO RESOURCES_ROLES (RESOURCE_ID,ROLE_ID) VALUES ('");
+	populate_table_from_file("my_database.db","person_ids","INSERT INTO PERSON_IDS (ROW_INDX,TUID,ACCESSNET) VALUES ('");
+	populate_table_from_file("my_database.db","person_roles","INSERT or IGNORE INTO PERSON_ROLES (ROW_INDX,TUID,ROLE_ID,ROLE_EXP_DATE) VALUES ('");
+	populate_table_from_file("my_database.db","resources_roles","INSERT or IGNORE INTO RESOURCES_ROLES (ROW_INDX,RESOURCE_ID,ROLE_ID) VALUES ('");
 	
 	return 0;
 }
