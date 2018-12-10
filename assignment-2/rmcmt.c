@@ -1,19 +1,19 @@
 /* Matthew Slipenchuk - tuf91673@temple.edu	
  * CS 2107, Assignment 2 Decommenter
- * This program will read in a file, and write its non-commented
- * contents to a file called rmcmt_temp.txt 
+ * This program will ask the user to enter the file name, and write its non-commented
+ * contents to a file called rmcmt_output.txt 
  */
 #include <stdio.h> 
 #define BUFF_SIZE 64 
  
-int main() 
-{ 
-    FILE *fp, *fptemp;
+int main() { 
+    FILE *fp, *fp2;
 	/* State variables and line number */
-    int in_comment, out_comment,line_number = 0; 
+    int in_comment,first_char = 1;
+	size_t line_number = 1;
     char file_name[BUFF_SIZE];
-	char[] temp_file_name[] = "rmcmt_temp.txt";
-    char c;  /* Store char read from file */
+	char[] output_file[] = "rmcmt_output.c";
+    char curr,prev;  /* Store char read from file */
   
     /* Get file name from user. User can provide 
 	 * the filename if the file is in the
@@ -21,45 +21,46 @@ int main()
 	 * must be provided.
 	 */
     printf("Enter file name: "); 
-    scanf("%s", file_name); 
+    scanf("%s", input_file); 
   
-    fp = fopen(file_name, "r"); /* Open file */
-	fp2 = fopen(temp_file_name, "a");
+    fp = fopen(input_file, "r"); /* Open input file */
+	fp2 = fopen(output_file, "a"); /* Create output file */
 	
     if (fp == NULL) { /* Does file actually exist? */
-        printf("Could not open file %s", file_name); 
+        printf("Could not open file %s", input_file); 
         return 1; 
     } 
   
-    /* Iterate through every char in file until End of File (EOF) is reached */
-    for (c = getc(fp); c != EOF; c = getc(fp)) {
-        if (c == '\n') {
-            line_number = line_number + 1; /* Update line_number */ 
+    in_comment = 0;
+	prev = getc(fp); /* Get first char */
+	/* Iterate through every char in file until End of File (EOF) is reached */
+    for (curr = getc(fp); curr != EOF; curr = getc(fp)) {
+        if (curr == '*' && prev == '/') { /* Checks for "/*" */
+			in_comment = 1;	/* Update state variable */
+		} else if (curr == '/' && prev == '*') { /* Check for */
+			in_comment = 0;    /* Update state variable */
+		} else if (curr == '\n') { /* Check if about to exit comment */
+			line_number++;
+		} 
+		
+		if (in_comment = 0) {
+			if (first_char == 1) { /* Write the first char (prev) on first pass if not in comment*/
+				fputc(prev, fp2); 
+				first_char = 0;
+			}
+			fputc(curr, fp2); /* Write char to file if not in comment */
 		}
-		else if (c == '/*') { /* Check if about to enter comment */
-			out_comment = 0;  /* Update state variables */
-			in_comment = 1;
-		}
-		else if (c == '*/') { /* Check if about to exit comment */
-			out_comment = 1;  /* Update state variables */
-			in_comment = 0;
-		}
-		if (out_comment = 1 && c != '*/') {
-			fputc(c, fptemp);
-		}
+		prev = curr; /* Update previous char's value */
 	}	
 
-	
 	if (in_comment == 1) {
-		printf("Error: Unterminated Comment\nLine: %d", line_number); 
+		printf("Error: Unterminated Comment\n"); 
         return 1; 
 	}
 	
     fclose(fp); // Close the file 
-	remove(file_name); /* Delete old, comment ridden, file */
-	rename(tempfile_name, file_name); /* Rename our output file */
-	fclose(fptemp);
-    printf("The file %s has %d lines\n ", file_name, count); 
+	fclose(fp2);
+    printf("The file %s has %d lines\n ", file_name, line_number); 
 	
     return 0; 
-} 
+}
