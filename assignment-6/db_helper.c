@@ -31,7 +31,7 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 	char *result;
 	FILE *fp;
 	
-	fp = fopen("aa", "a");
+	fp = fopen("testfile", "a");
 	for(i = 0; i<argc; i+=2){
 		result = (char *)malloc(11);
 		strcpy(result,argv[i] ? argv[i] : "NULL");
@@ -40,10 +40,13 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 		strcat(result,"\n");
 		fputs(result,fp);
 		free(result);
-	} 
+	}
 	fclose(fp);
 	return 0;
 }
+
+
+
 
 int create_db(char* dbname) {
 	sqlite3 *db;
@@ -221,7 +224,7 @@ int populate_person_resources(char *dbname) {
 	  fprintf(stderr, "Opened database successfully\n");
 	}
 
-	/* Create SQL statement for displaying records to user*/
+	/* Create SQL statement */
 	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID, A.NAME FROM PERSON_ROLES P " \
 			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID " \
 			"JOIN RESOURCES A ON  A.ID = RR.RESOURCE_ID";
@@ -229,16 +232,7 @@ int populate_person_resources(char *dbname) {
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback_display_result, (void*)data, &zErrMsg);
 
-	if( rc != SQLITE_OK ) {
-	  fprintf(stderr, "SQL error: %s\n", zErrMsg);
-	  sqlite3_free(zErrMsg);
-	} else {
-	  fprintf(stdout, "Operation done successfully\n");
-	}
-	sqlite3_close(db);
-	return 0;
-
-	/* Create SQL statement for writing to file*/
+	/* Create SQL statement */
 	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID FROM PERSON_ROLES P " \
 			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID";
 
