@@ -12,6 +12,7 @@ int main() {
     int in_comment,first_char = 1;
 	size_t line_number = 1;
 	char output_file[] = "rmcmt_output.c";
+	char output_file[] = "test.c";
     char curr,prev;  /* Store char read from file */
   
     /* Get file name from user. User can provide 
@@ -19,8 +20,7 @@ int main() {
 	 * current working directory or the full path
 	 * must be provided.
 	 */
-    printf("Enter file name: "); 
-    scanf("%s", input_file); 
+
   
     fp = fopen(input_file, "r"); /* Open input file */
 	fp2 = fopen(output_file, "a"); /* Create output file */
