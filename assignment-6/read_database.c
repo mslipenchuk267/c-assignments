@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
    }
 
    /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   //rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    /* Create SQL statement */
    sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID, A.NAME FROM PERSON_ROLES P " \
