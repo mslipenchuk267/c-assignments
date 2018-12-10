@@ -22,7 +22,7 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 	for(i = 0; i<argc; i+=2){
 		strcat(argv[i],"#");
 		strcat(argv[i],argv[i++]);
-		fputs(fp, "%s#%s\n", argv[i],argv[i++]);
+		fputs(argv[i],fp);
 	}
 	fclose(fp);
 	return 0;
