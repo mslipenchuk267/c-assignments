@@ -118,7 +118,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 	  return(0);
 	} else {
-	  fprintf(stderr, "Opened database successfully\n");
+	  fprintf(stderr, "Created database successfully\n");
 	}
 	
 	//static const char filename[] = "person_ids";

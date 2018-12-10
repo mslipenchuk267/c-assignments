@@ -1,20 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "sqlite3.h" 
 
-static int callback2(void *data, int argc, char **argv, char **azColName);
-
-static int callback2(void *data, int argc, char **argv, char **azColName){
-	int i;
-	fprintf(stderr, "%s: ", (const char*)data);
-
-	for(i = 0; i<argc; i++){
-	  printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-	}
-
-	printf("\n");
-	return 0;
+static int callback(void *data, int argc, char **argv, char **azColName){
+   int i;
+   fprintf(stderr, "%s: ", (const char*)data);
+   
+   for(i = 0; i<argc; i++){
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   
+   printf("\n");
+   return 0;
 }
 
 int main(int argc, char* argv[]) {
@@ -35,7 +32,7 @@ int main(int argc, char* argv[]) {
    }
 
    /* Execute SQL statement */
-   //rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    /* Create SQL statement */
    sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID, A.NAME FROM PERSON_ROLES P " \
@@ -43,7 +40,7 @@ int main(int argc, char* argv[]) {
 			"JOIN RESOURCES A ON  A.ID = RR.RESOURCE_ID";
 
    /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback2, (void*)data, &zErrMsg);
+   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    if( rc != SQLITE_OK ) {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
