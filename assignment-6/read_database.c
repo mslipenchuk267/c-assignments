@@ -32,7 +32,7 @@ static int callback2(void *data, int argc, char **argv, char **azColName){
 		strcat(result,"#");
 		strcat(result,argv[i++] ? argv[i++] : "NULL");
 		fputs(result, fp);
-		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+		//printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
 	}
 
 	printf("\n");
