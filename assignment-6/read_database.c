@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sqlite3.h" 
 
 static int callback2(void *data, int argc, char **argv, char **azColName);
@@ -28,7 +29,7 @@ static int callback2(void *data, int argc, char **argv, char **azColName){
 	fprintf(stderr, "%s: ", (const char*)data);
 	
 	for(i = 0; i<argc; i+=2){
-		strcpt(result,argv[i] ? argv[i] : "NULL");
+		strcpy(result,argv[i] ? argv[i] : "NULL");
 		strcat(result,"#");
 		strcat(result,argv[i++] ? argv[i++] : "NULL");
 		fputs(result, fp);
