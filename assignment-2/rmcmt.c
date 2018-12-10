@@ -11,8 +11,7 @@ int main() {
 	/* State variables and line number */
     int in_comment,first_char = 1;
 	size_t line_number = 1;
-    char file_name[BUFF_SIZE];
-	char[] output_file[] = "rmcmt_output.c";
+	char output_file[] = "rmcmt_output.c";
     char curr,prev;  /* Store char read from file */
   
     /* Get file name from user. User can provide 
@@ -60,7 +59,7 @@ int main() {
 	
     fclose(fp); // Close the file 
 	fclose(fp2);
-    printf("The file %s has %d lines\n ", file_name, line_number); 
+    printf("The file %s has %d lines\n ", output_file, line_number); 
 	
     return 0; 
 }
