@@ -7,6 +7,7 @@
 /* Prints out all Entries */
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
+   char *result;
    for(i = 0; i<argc; i++) {
       printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
    }
@@ -65,7 +66,7 @@ int create_tables(char *dbname) {
 	  "TUID          CHAR(9)             	NOT NULL," \
 	  "ROLE_ID       TEXT   	            NOT NULL," \
 	  "ROLE_EXP_DATE TEXT			    	NOT NULL," \
-	   "PRIMARY KEY (TUID,ROLE_ID));";
+	  "PRIMARY KEY (TUID,ROLE_ID));";
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
@@ -75,7 +76,7 @@ int create_tables(char *dbname) {
 	/* Execute SQL statement */
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	/* Create SQL statement */
-	sql = "CREATE TABLE RESOURCE("  \
+	sql = "CREATE TABLE RESOURCES("  \
 	  "ID 		 TEXT    PRIMARY KEY	NOT NULL," \
 	  "NAME      CHAR(6)			NOT NULL );";
 	/* Execute SQL statement */
