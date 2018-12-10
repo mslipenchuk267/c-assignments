@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
    char *zErrMsg = 0;
    int rc;
    char *sql;
-   const char* data = "Callback function called";
+   const char* data = "";
 
    /* Open database */
    rc = sqlite3_open("my_database.db", &db);
