@@ -1,0 +1,33 @@
+Problem: - Poplate person_resources file with tuid corresponding to each resource id.
+	 - Display all user information 
+
+Needed Files: resources, person_roles, resources_roles
+
+Libraries Used: SQLite3, embedded via sqlite3.c, shell.c and sqlite3.h
+
+Solution:
+- Create SQlite3 database, db
+- Create db tables to store data in respective files:
+	- RESOURCES
+	- PERSON_ROLES
+	- RESOURCES_ROLES
+- Populate tables from respective file
+	- File Reading
+		- Read line via fgets
+		- Tokenize line by # and \n (trailing escape character)
+		- Append token to sql command
+	- Execute INSERT SQL command to insert values
+- Populate person resources file and display results
+	- Use SQL command to display tuid, role, role name
+		- Take PERSON_ROLES.TUID, RESOURCES_ROLES.RESOURCE_ID, RESOURCES.NAME
+		   where PERSON_ROLES.TUID = RESOURCES_ROLES.ROLE_ID and 
+		   where RESOURCES.ID = RESOURCES_ROLES.RESOURCE_ID
+	- Display results via callback_display_result function
+	- Use SQL command to get tuid and role_id
+		- Take PERSON_ROLES.TUID, RESOURCES_ROLES.RESOURCE_ID
+		   where PERSON_ROLES.TUID = RESOURCES_ROLES.ROLE_ID
+	- Write records in "tuid#resource" format to person_resources file
+		- Use callback_write_to_file function
+			- Since values are in tuid, resource_id, tuid, resource_id,...
+			   order use for loop where increment is 2 to send tuid, resource pair
+			- Assemble and write string to file 

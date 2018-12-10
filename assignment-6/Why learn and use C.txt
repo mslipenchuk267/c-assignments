@@ -1,0 +1,6 @@
+
+It is important for me to learn and use C because it is a high-level language that
+can handle low-level activities which can be compiled on a vast amount of platforms.
+I have interest in embedded devices and also know that SDKs for software often writen in C.
+If I want to create drivers for devices or make use of SDKs to implement APIs to 
+interface between different programs, then it is very relevant to learn C.
