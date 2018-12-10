@@ -18,7 +18,9 @@ static int callback_display_result(void *data, int argc, char **argv, char **azC
 
 static int callback_write_to_file(void *data, int argc, char **argv, char **azColName){
 	int i;
+	char *result;
 	FILE *fp;
+	
 	fp = fopen("testfile", "w+");
 	for(i = 0; i<argc; i+=2){
 		result = (char *)malloc(11);
