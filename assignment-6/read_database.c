@@ -18,8 +18,8 @@ static int callback_display_result(void *data, int argc, char **argv, char **azC
 static int callback_write_to_file(void *data, int argc, char **argv, char **azColName){
 	int i;
 	FILE *fp;
-	fp = fopen("person_roles", "w+");
-	for(i = 0; i<argc; i++){
+	fp = fopen("testfile", "w+");
+	for(i = 0; i<argc; i+=2){
 	  fprintf(fp, "%s#%s\n", argv[i],argv[i++]);
 	}
 	fclose(fp);
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID FROM PERSON_ROLES P " \
 			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID";
    
-	rc = sqlite3_exec(db, sql, callback_display_result, (void*)data, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_write_to_file, (void*)data, &zErrMsg);
    
 	if( rc != SQLITE_OK ) {
 	  fprintf(stderr, "SQL error: %s\n", zErrMsg);
