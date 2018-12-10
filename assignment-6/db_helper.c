@@ -15,16 +15,34 @@ static int callback_log(void *NotUsed, int argc, char **argv, char **azColName) 
    printf("\n");
    return 0;
 }
-/* Formats entries to display to user*/
+/* Prints and formats entries for displaying all records to user */
 static int callback_display_result(void *data, int argc, char **argv, char **azColName){
    int i;
-   //fprintf(stderr, "%s: ", (const char*)data);
    for(i = 0; i<argc; i++){
       printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
    }
    
    printf("\n");
    return 0;
+}
+/* Writes entries to file, hash delimited */
+static int callback_write_to_file(void *data, int argc, char **argv, char **azColName){
+	int i;
+	char *result;
+	FILE *fp;
+	
+	fp = fopen("testfile", "a");
+	for(i = 0; i<argc; i+=2){
+		result = (char *)malloc(11);
+		strcpy(result,argv[i] ? argv[i] : "NULL");
+		strcat(result,"#");
+		strcat(result, argv[i++] ? argv[i++] : "NULL");
+		strcat(result,"\n");
+		fputs(result,fp);
+		free(result);
+	} 
+	fclose(fp);
+	return 0;
 }
 
 int create_db(char* dbname) {
