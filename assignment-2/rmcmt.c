@@ -9,8 +9,7 @@
 int main() { 
     FILE *fp, *fp2;
 	/* State variables and line number */
-    int in_comment,first_char = 1;
-	size_t line_number = 1;
+    int in_comment = 0, first_char = 1, line_number = 1;
 	char input_file[] = "test.c";
 	char output_file[] = "rmcmt_output.c";
     char curr,prev;  /* Store char read from file */
@@ -30,7 +29,6 @@ int main() {
         return 1; 
     } 
   
-    in_comment = 0;
 	prev = getc(fp); /* Get first char */
 	/* Iterate through every char in file until End of File (EOF) is reached */
     for (curr = getc(fp); curr != EOF; curr = getc(fp)) {
