@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
    char *zErrMsg = 0;
    int rc;
    char *sql;
-   char *outputfile = "person_roles
+   char *outputfile = "person_roles";
    const char* data = "Record";
 
    /* Open database */
