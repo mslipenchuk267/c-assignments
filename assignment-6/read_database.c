@@ -5,7 +5,7 @@
 
 static int callback2(void *data, int argc, char **argv, char **azColName);
 
-static int callback(void *data, int argc, char **argv, char **azColName){
+static int callback2(void *data, int argc, char **argv, char **azColName){
 	int i;
 	fprintf(stderr, "%s: ", (const char*)data);
 
@@ -16,30 +16,6 @@ static int callback(void *data, int argc, char **argv, char **azColName){
 	printf("\n");
 	return 0;
 }
-
-static int callback2(void *data, int argc, char **argv, char **azColName){
-	int i;
-	char result[] = " ";
-	FILE *fp;
-	fp = fopen("person_resources", "w+");
-	//fprintf(fp, "This is testing for fprintf...\n");
-	fputs("This is testing for fputs...\n", fp);
-	fclose(fp);
-
-	fprintf(stderr, "%s: ", (const char*)data);
-	
-	for(i = 0; i<argc; i+=2){
-		strcpy(result,argv[i] ? argv[i] : "NULL");
-		strcat(result,"#");
-		strcat(result,argv[i++] ? argv[i++] : "NULL");
-		fputs(result, fp);
-		//printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-	}
-
-	printf("\n");
-	return 0;
-}
-
 
 int main(int argc, char* argv[]) {
    sqlite3 *db;
@@ -59,7 +35,7 @@ int main(int argc, char* argv[]) {
    }
 
    /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   //rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    /* Create SQL statement */
    sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID, A.NAME FROM PERSON_ROLES P " \
