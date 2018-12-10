@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 			"JOIN RESOURCES A ON  A.ID = RR.RESOURCE_ID";
 
    /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback2, (void*)data, &zErrMsg);
+   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    if( rc != SQLITE_OK ) {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
