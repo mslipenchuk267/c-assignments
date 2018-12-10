@@ -127,6 +127,7 @@ int main(int argc, char **argv) {
 	populate_table_from_file("my_database.db","resources","INSERT INTO RESOURCES (ID,NAME) VALUES ('");
 	populate_table_from_file("my_database.db","person_roles","INSERT INTO PERSON_ROLES (TUID,ROLE_ID,ROLE_EXP_DATE) VALUES ('");
 	populate_table_from_file("my_database.db","resources_roles","INSERT INTO RESOURCES_ROLES (RESOURCE_ID,ROLE_ID) VALUES ('");
+	populate_person_resources("my_database.db");
 	
 	return 0;
 }

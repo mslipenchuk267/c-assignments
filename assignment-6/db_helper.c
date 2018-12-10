@@ -184,4 +184,54 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
     }
 	
    return 0;
-} 
+}
+
+int populate_person_resources(char *dbname) {
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+	char *sql;
+	const char* data = "Record";
+
+	/* Open database */
+	rc = sqlite3_open(dbname, &db);
+
+	if( rc ) {
+	  fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+	  return(0);
+	} else {
+	  fprintf(stderr, "Opened database successfully\n");
+	}
+
+	/* Create SQL statement for displaying records to user*/
+	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID, A.NAME FROM PERSON_ROLES P " \
+			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID " \
+			"JOIN RESOURCES A ON  A.ID = RR.RESOURCE_ID";
+
+	/* Execute SQL statement */
+	rc = sqlite3_exec(db, sql, callback_display_result, (void*)data, &zErrMsg);
+
+	if( rc != SQLITE_OK ) {
+	  fprintf(stderr, "SQL error: %s\n", zErrMsg);
+	  sqlite3_free(zErrMsg);
+	} else {
+	  fprintf(stdout, "Operation done successfully\n");
+	}
+	sqlite3_close(db);
+	return 0;
+
+	/* Create SQL statement for writing to file*/
+	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID FROM PERSON_ROLES P " \
+			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID";
+
+	rc = sqlite3_exec(db, sql, callback_write_to_file, (void*)data, &zErrMsg);
+
+	if( rc != SQLITE_OK ) {
+	  fprintf(stderr, "SQL error: %s\n", zErrMsg);
+	  sqlite3_free(zErrMsg);
+	} else {
+	  fprintf(stdout, "Operation done successfully\n");
+	}
+	sqlite3_close(db);
+	return 0;
+}
