@@ -35,9 +35,8 @@ int main(int argc, char* argv[]) {
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
    
    /* Create SQL statement */
-   sql = "Select distinct p.tuid, r.resource_id "\
-			"from person_roles p " \
-			"join resources_roles r on p.role_id = r.role_id";
+   sql = "SELECT DISTINCT P.TUID, R.RESOURCE_ID FROM PERSON_ROLES P " \
+			"JOIN RESOURCES_ROLES R ON P.ROLE_ID = R.ROLE_ID";
 
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
