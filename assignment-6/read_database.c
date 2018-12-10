@@ -27,6 +27,7 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 		strcpy(result,argv[i] ? argv[i] : "NULL");
 		strcat(result,"#");
 		strcat(result, argv[i++] ? argv[i++] : "NULL");
+		strcat(result,"\n");
 		fputs(result,fp);
 		free(result);
 	}
