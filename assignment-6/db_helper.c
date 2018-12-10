@@ -4,13 +4,25 @@
 #include "sqlite3.h" 
 #include "db_helper.h"
 #define MAX 256
-/* Prints out all Entries */
-static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+
+/* Prints and formats entries for logging purposes */
+static int callback_log(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
    char *result;
    for(i = 0; i<argc; i++) {
       printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
    }
+   printf("\n");
+   return 0;
+}
+/* Formats entries to display to user*/
+static int callback_display_result(void *data, int argc, char **argv, char **azColName){
+   int i;
+   //fprintf(stderr, "%s: ", (const char*)data);
+   for(i = 0; i<argc; i++){
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   
    printf("\n");
    return 0;
 }
@@ -54,13 +66,13 @@ int create_tables(char *dbname) {
 	  "PREFERRED_NAME TEXT			      NOT NULL );";
 	  
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_IDS("  \
 	  "TUID         CHAR(9) PRIMARY KEY	NOT NULL," \
 	  "ACCESSNET    CHAR(8)			    NOT NULL );";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_ROLES("  \
 	  "TUID          CHAR(9)             	NOT NULL," \
@@ -68,33 +80,33 @@ int create_tables(char *dbname) {
 	  "ROLE_EXP_DATE TEXT			    	NOT NULL," \
 	  "PRIMARY KEY (TUID,ROLE_ID));";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE PERSON_RESOURCES("  \
 	  "TUID         CHAR(9) PRIMARY KEY	NOT NULL," \
 	  "RESOURCE     CHAR(8)			    NOT NULL );";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCES("  \
 	  "ID 		 TEXT    PRIMARY KEY	NOT NULL," \
 	  "NAME      CHAR(6)			NOT NULL );";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCES_ROLES("  \
 	  "RESOURCE_ID TEXT		NOT NULL," \
 	  "ROLE_ID 	   TEXT		NOT NULL," \
 	  "PRIMARY KEY (RESOURCE_ID,ROLE_ID));";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	/* Create SQL statement */
 	sql = "CREATE TABLE RESOURCE_REQUIREMENTS("  \
 	  "RESOURCE_ID 		  TEXT    PRIMARY KEY NOT NULL," \
 	  "PERSON_NAME_TYPE   CHAR(9)     		  NOT NULL," \
 	  "PERSON_ID_TYPE     CHAR(9)		   	  NOT NULL );";
 	/* Execute SQL statement */
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 	if( rc != SQLITE_OK ){
 		fprintf(stderr, "SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -121,7 +133,6 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 	  fprintf(stderr, "Created database successfully\n");
 	}
 	
-	//static const char filename[] = "person_ids";
     FILE *file = fopen ( filename, "r" );
 	int onHeader = 1;
 	char *result;
@@ -143,9 +154,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 			char* token;
 			token = strtok(line, delims);
 			while(token) {
-				//strcat(result, seperator);
 				strcat(result, token);
-				//strcat(result, seperator);
 				token = strtok(NULL, delims); /* New token */
 				if (token != NULL) {	
 					strcat(result, comma);
@@ -157,7 +166,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 			
 			sql = result;
 			/* Execute SQL statement */
-			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+			rc = sqlite3_exec(db, sql, callback_log, 0, &zErrMsg);
 
 			if( rc != SQLITE_OK ){
 			  fprintf(stderr, "SQL error: %s\n", zErrMsg);
