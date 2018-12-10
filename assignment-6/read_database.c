@@ -19,8 +19,8 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 	int i;
 	FILE *fp;
 	fp = fopen("person_roles", "w+");
-	for(i = 0; i<argc; i+=2){
-	  fprintf(fp, "%s#%s\n", argv[i] ? argv[i] : "NULL",argv[i++] ? argv[i++] : "NULL");
+	for(i = 0; i<argc; i++){
+	  fprintf(fp, "%s#%s\n", argv[i],argv[i++]);
 	}
 	fclose(fp);
 	return 0;
