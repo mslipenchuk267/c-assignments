@@ -3,7 +3,7 @@
 #include "sqlite3.h" 
 
 static int callback_display_result(void *data, int argc, char **argv, char **azColName);
-static int callback_write_to_file(void *data, int argc, char **argv, char **azColName, char *outputfile);
+static int callback_write_to_file(void *data, int argc, char **argv, char **azColName);
 
 static int callback_display_result(void *data, int argc, char **argv, char **azColName){
    int i;
@@ -15,10 +15,10 @@ static int callback_display_result(void *data, int argc, char **argv, char **azC
    return 0;
 }
 
-static int callback_write_to_file(void *data, int argc, char **argv, char **azColName, char *outputfile){
+static int callback_write_to_file(void *data, int argc, char **argv, char **azColName){
 	int i;
 	FILE *fp;
-	fp = fopen(outputfile, "w+");
+	fp = fopen("person_roles", "w+");
 	for(i = 0; i<argc; i+=2){
 	  fprintf(fp, "%s#%s\n", argv[i] ? argv[i] : "NULL",argv[i++] ? argv[i++] : "NULL");
 	}
@@ -31,7 +31,6 @@ int main(int argc, char* argv[]) {
    char *zErrMsg = 0;
    int rc;
    char *sql;
-   char *outputfile = "person_roles";
    const char* data = "Record";
 
    /* Open database */
