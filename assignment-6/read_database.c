@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include "sqlite3.h" 
 
-static int callback(void *data, int argc, char **argv, char **azColName){
+static int callback2(void *data, int argc, char **argv, char **azColName);
+
+static int callback2(void *data, int argc, char **argv, char **azColName){
    int i;
    fprintf(stderr, "%s: ", (const char*)data);
    
@@ -20,7 +22,7 @@ int main(int argc, char* argv[]) {
    char *zErrMsg = 0;
    int rc;
    char *sql;
-   const char* data = "";
+   const char* data = "Record";
 
    /* Open database */
    rc = sqlite3_open("my_database.db", &db);
@@ -41,7 +43,7 @@ int main(int argc, char* argv[]) {
 			"JOIN RESOURCES A ON  A.ID = RR.RESOURCE_ID";
 
    /* Execute SQL statement */
-   rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+   rc = sqlite3_exec(db, sql, callback2, (void*)data, &zErrMsg);
    
    if( rc != SQLITE_OK ) {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
