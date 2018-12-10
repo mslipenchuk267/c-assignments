@@ -21,9 +21,12 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 	FILE *fp;
 	fp = fopen("testfile", "w+");
 	for(i = 0; i<argc; i+=2){
-		strcat(argv[i],"#");
-		strcat(argv[i],argv[i++]);
-		fputs(argv[i],fp);
+		result = (char *)malloc(11);
+		strcpy(result,argv[i] ? argv[i] : "NULL");
+		strcat(result,"#");
+		strcat(argv[i+] ? argv[i+] : "NULL");
+		fputs(argv[i],result);
+		free(result);
 	}
 	fclose(fp);
 	return 0;
