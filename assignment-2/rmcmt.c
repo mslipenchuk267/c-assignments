@@ -12,7 +12,6 @@ int main() {
     int in_comment,first_char = 1;
 	size_t line_number = 1;
 	char output_file[] = "rmcmt_output.c";
-	char *output_file;
     char curr,prev;  /* Store char read from file */
   
     /* Get file name from user. User can provide 
