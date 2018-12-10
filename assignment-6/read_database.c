@@ -4,9 +4,9 @@
 
 static int callback2(void *data, int argc, char **argv, char **azColName);
 
-static int callback2(void *data, int argc, char **argv, char **azColName){
+static int callback(void *data, int argc, char **argv, char **azColName){
    int i;
-   fprintf(stderr, "%s: ", (const char*)data);
+   //fprintf(stderr, "%s: ", (const char*)data);
    
    
    for(i = 0; i<argc; i++){
