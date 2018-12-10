@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 	sql = "SELECT DISTINCT P.TUID, RR.RESOURCE_ID FROM PERSON_ROLES P " \
 			"JOIN RESOURCES_ROLES RR ON P.ROLE_ID = RR.ROLE_ID";
    
-	rc = sqlite3_exec(db, sql, callback_write_to_file, (void*)data, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback_display_result, (void*)data, &zErrMsg);
    
 	if( rc != SQLITE_OK ) {
 	  fprintf(stderr, "SQL error: %s\n", zErrMsg);
