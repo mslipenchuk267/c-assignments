@@ -34,7 +34,7 @@ int main() {
     for (curr = getc(fp); curr != EOF; curr = getc(fp)) {
         if (curr == '*' && prev == '/') { /* Checks for "/*" */
 			in_comment = 1;	/* Update state variable */
-		} else if (curr == '/' && prev == '*') { /* Check for */
+		} else if (curr == '/' && prev == '*') { /* Check for : */
 			in_comment = 0;    /* Update state variable */
 		} else if (curr == '\n') { /* Check if about to exit comment */
 			line_number++;

@@ -36,7 +36,7 @@ static int callback_write_to_file(void *data, int argc, char **argv, char **azCo
 	int i;
 	char *result;
 	
-	fp = fopen("person_resource", "a"); /* Open output file in append mode*/
+	fp = fopen("testing_file", "a"); /* Open output file in append mode*/
 	for(i = 0; i<argc; i+=2){ /* Increment by 2 due to {tuid,resource_id,tuid,resource_id,...} order */
 		result = (char *)malloc(11); /* Allocate space for line */
 		strcpy(result,argv[i] ? argv[i] : "NULL"); /* Get tuid */
