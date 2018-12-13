@@ -151,7 +151,7 @@ int populate_table_from_file(char *dbname, char *filename, char *sql_command) {
 				onHeader = 0;
 				continue;	/* Skip header line in file */
 			}
-			char delims[] = "#,\n";
+			char delims[] = "#,\n"; /* \33 - carriage return to tokenizer */
 			result = (char *)malloc(MAX); /* Create SQL Statment */
 			strcpy(result,sql_command);
 			char* token;

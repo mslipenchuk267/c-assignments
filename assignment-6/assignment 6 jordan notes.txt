@@ -1,0 +1,3 @@
+test cases
+-pthread - multi threading - sql_exec may be needing this
+carriage return - ascii 33
